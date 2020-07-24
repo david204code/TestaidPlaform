@@ -8,6 +8,7 @@ gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'turbolinks', '~> 5.2.0'
 gem 'pusher'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'fast_jsonapi'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
