@@ -5,12 +5,15 @@ Rails.application.routes.draw do
   get '/logged_in', to: 'sessions#is_logged_in?'
   resources :users, only: [:create, :show, :index]
 
-  resources :helps do
-    resources :accepted_helps
-    get '/accepted_help/last', to: 'accepted_helps#getLast'
-    get '/accepted_help/:id/userInfo', to: 'accepted_helps#getUser'
-    get '/accepted_help/:id', to: 'accepted_helps#getId'
-  end
+  # resources :helps do
+  #   resources :accepted_helps
+  #   get '/accepted_help/last', to: 'accepted_helps#getLast'
+  #   get '/accepted_help/:id/userInfo', to: 'accepted_helps#getUser'
+  #   get '/accepted_help/:id', to: 'accepted_helps#getId'
+  # end
+
+  resources :helps, param: :id
+  resources :accepted_helps
   
   get '/helps/:id/user', to: 'helps#helpUser'
 
