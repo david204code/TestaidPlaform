@@ -1,5 +1,5 @@
 class HelpsController < ApplicationController
-  before_action :set_help, only: [:show, :edit, :update, :destroy]
+  # before_action :set_help, only: [:show, :edit, :update, :destroy]
 
   def new 
     @help = Help.new(user:current_user)
@@ -41,19 +41,29 @@ class HelpsController < ApplicationController
   end
 
   def index
-    @help = Help.includes(:accepted_helps)
+    @helps = Help.all
     # @help = Help.includes(:accepted_helps).map{|help| help.accepted_helps}
     # @help = Help.all
     # @help = Help.first
     # help 
-    # render json: { data: @help }
-    render json: @help.to_json( :methods => [:accepted_helps])
+    # render json: { data: helps }
+    render json: @helps
+  end
+
+  def index1
+    helps = Help.all
+    render json: HelpSerializer.new(helps).serialized_json
   end
   
   def show 
     @help ||= Help.find(params[:id])
     # render json: { data: @help }
     render json: @help
+  end
+
+  def show1
+    help = Help.find_by(id: params[:id])
+    render json: HelpSerializer.new(help).serialized_json
   end
   
   def helpUser
@@ -63,13 +73,17 @@ class HelpsController < ApplicationController
   end
 
   private
+    # specify the resources that want to be included
+  def option
+    @options ||= { include: %i[accepted_helps]}
+  end
 
   def set_help
     @help = Help.find(params[:id])
   end
 
   def help_params
-    params.fetch(:help, {}).permit(
+    params.require(:help).permit(
       :title,
       :description,
       :request_type,

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   # end
 
   resources :helps, param: :id
+  get '/helps1', to: 'helps#index1'
+  get '/help/:id', to: 'helps#show1'
   resources :accepted_helps
   
   get '/helps/:id/user', to: 'helps#helpUser'
