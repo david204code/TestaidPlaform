@@ -40,9 +40,9 @@ class Request extends React.Component {
     let acceptedId;
     // console.log(help.id);
 
-    axios.post(`http://localhost:3000/helps/${help.id}/accepted_helps`, {withCredentials: true, help_id: help.id})
+    axios.post(`http://localhost:3000/accepted_helps`, {withCredentials: true, help_id: help.id})
       .then(response => {
-        axios.get(`http://localhost:3000/helps/${help.id}/accepted_help/last`)
+        axios.get(`http://localhost:3000/${help.id}/accepted_help/last`)
         .then(response => {
           // console.log(response.data)
           this.setState({
@@ -52,7 +52,7 @@ class Request extends React.Component {
           // console.log(this.state.accepted.id);
           acceptedId = this.state.accepted.id;
           console.log(acceptedId);
-          this.props.history.push(`/helps/${help.id}/acceptedhelp/${acceptedId}`, {withCredentials: true, help_id: help.id});
+          this.props.history.push(`/acceptedhelp/${acceptedId}`, {withCredentials: true, help_id: help.id});
         })
         .catch(error => console.log(error))
     

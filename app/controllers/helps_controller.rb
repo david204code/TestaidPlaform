@@ -47,12 +47,13 @@ class HelpsController < ApplicationController
     # @help = Help.first
     # help 
     # render json: { data: helps }
-    render json: @helps
+    # render json: @helps
+    render json: @helps.to_json( :methods => [:accepted_helps])
   end
 
   def index1
-    helps = Help.all
-    render json: HelpSerializer.new(helps).serialized_json
+    @helps = Help.all
+    render json: HelpSerializer.new(@helps, option).serialized_json
   end
   
   def show 

@@ -24,20 +24,21 @@ class AcceptedHelp extends React.Component {
 
     // axios.get(`helps/45/accepted_help/59`)
     //might need to change accepted_helps to accepted_help
-    axios.get(`/helps/${id}/accepted_help/${acceptedId}`)
+    axios.get(`/helps/${id}`)
     .then(response => {
       // console.log(response)
-      this.setState({acceptedHelp: response.data})
+      // console.log(response.data)
+      this.setState({helpInfo: response.data})
       // console.log(response.data)
     })
     .catch(error => console.log("Error", error))
 
     // axios.get(`helps/45/accepted_helps/59`)
     //might need to change accepted_helps to accepted_help
-    axios.get(`/helps/${id}/accepted_helps/${acceptedId}`)
+    axios.get(`/accepted_helps/${acceptedId}`)
     .then(response => {
-        // console.log(response)
-        this.setState({helpInfo: response.data})
+        console.log(response.data)
+        this.setState({acceptedHelp: response.data})
         // console.log(response.data)
     })
     .catch(error =>  console.log("error", error))
