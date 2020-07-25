@@ -6,7 +6,7 @@ import Welcome from '../components/pages/Welcome';
 import Home from '../components/pages/Home';
 import Dashboard from '../components/pages/Dashboard';
 import Map from '../components/map/Map';
-import Help from './help/Help';
+// import Help from './help1/Help';
 import Login from '../components/auth/Login';
 import Signup from '../components/auth/SignUp';
 import Notice from '../components/pages/Notice';
@@ -14,6 +14,8 @@ import Request from '../components/map/Request';
 import AcceptedHelp from './map/AcceptedHelp';
 import Message from './map/Message';
 import ConversationList from './ConversationList';
+import Helps from './Helps/Helps';
+import Help from './Help/Help';
 
 
 class App extends React.Component {
@@ -121,24 +123,31 @@ class App extends React.Component {
       <div>
         <BrowserRouter>
 
-          <Route
+          {/* <Route
             render ={props => (
               <Navbar {...props}
                 isLoggedin = {this.state.isLoggedin}
                 handleLogOut = {this.handleLogOut} 
             />
             )}
-          />
+          /> */}
 
           <Switch>
-            <Route 
+
+            <Route exact path ="/" component ={Helps} />
+            <Route exact path ="/hel/:title" component ={Help}/>
+
+
+
+
+            {/* <Route 
               exact path ={"/"}   
               render ={props => (
                 <Welcome {...props}
 
                 />
               )}            
-            />
+            /> */}
 
             <Route 
               exact path ={"/home"}
@@ -210,17 +219,17 @@ class App extends React.Component {
               path ="/acceptedhelp/:id" exact component = {AcceptedHelp}
             />   */}
 
-            <PrivateRoute
+            {/* <PrivateRoute
               exact path ={"/help"}
               component ={ Help }
               user ={this.state.user}
-              // render ={props => (
-              //     <Help {...props}
-              //       handleLogin = {this.handleLogin}
-              //       isLoggedin = {this.state.isLoggedin}
-              //     />
-              //   )}
-            />
+              render ={props => (
+                  <Help {...props}
+                    handleLogin = {this.handleLogin}
+                    isLoggedin = {this.state.isLoggedin}
+                  />
+                )}
+            /> */}
 
             <Route 
               exact path ={"/message"}
