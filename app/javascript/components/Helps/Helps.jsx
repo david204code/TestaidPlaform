@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
+import Help from './Help';
 
 const Helps = () => {
   const [helps, setHelps] = useState([])
@@ -17,8 +18,14 @@ const Helps = () => {
   }, [helps.length])
 
   const list = helps.map( item => {
-    console.log(item.attributes)
-    return (<li key={item.id} attributes ={item.attributes}></li>)
+    console.log(item)
+    return (
+      <Help 
+        key ={item.id}
+        attributes ={item.attributes}
+        id ={item.id}
+    />
+    )
   })
 
   return (
@@ -28,7 +35,7 @@ const Helps = () => {
         <div className ="subheader">Help App</div>
       </div>
       <div className ="grid">
-        {/* <ul>{list}DAvid</ul> */}
+        <ul>{list}</ul>
       </div>
     </div>
   )
