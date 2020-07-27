@@ -2,7 +2,7 @@ class AcceptedHelpsController < ApplicationController
   # before_action :get_help
   # before_action :set_accepted, only: [:show, :edit, :update, :destroy]
   # deals with the InvalidAuthenticityToken
-  protect_from_forgery with: :null_session
+  # protect_from_forgery with: :null_session
 
   def new
     @accepted_help = AcceptedHelp.new(user:current_user)

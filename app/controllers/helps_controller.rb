@@ -1,7 +1,7 @@
 class HelpsController < ApplicationController
   # before_action :set_help, only: [:show, :edit, :update, :destroy]
   # deals with the InvalidAuthenticityToken
-  protect_from_forgery with: :null_session
+  # protect_from_forgery with: :null_session
 
   def new 
     @help = Help.new(user:current_user)
