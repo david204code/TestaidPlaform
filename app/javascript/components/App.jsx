@@ -11,12 +11,12 @@ import Login from '../components/auth/Login';
 import Signup from '../components/auth/SignUp';
 import Notice from '../components/pages/Notice';
 import Request from '../components/map/Request';
-import AcceptedHelp from './map/AcceptedHelp';
+// import AcceptedHelp from './map/AcceptedHelp';
 import Message from './map/Message';
 import ConversationList from './ConversationList';
 import Helps from './Helps/Helps';
-import Help from './Help/Help';
-
+import AcceptedHelps from './Helps/AcceptedHelps';
+import AcceptedHelp from './Helps/AcceptedHelp';
 
 class App extends React.Component {
 
@@ -134,9 +134,9 @@ class App extends React.Component {
 
           <Switch>
 
-            <Route exact path ="/" component ={Helps} />
-            <Route exact path ="/hel/:title" component ={Help}/>
-
+            {/* <Route exact path ="/" component ={Helps} /> */}
+            <Route exact path ="/" component ={AcceptedHelps} />
+            <Route exact path ="/acceptedhelps/:id" component ={AcceptedHelp} />
 
 
 
@@ -211,9 +211,9 @@ class App extends React.Component {
               path ="/acceptedhelp" exact component = {AcceptedHelp}
             /> */}
 
-            <Route
+            {/* <Route
               path ="/:id/acceptedhelp/:acceptedId" exact component = {AcceptedHelp}
-            />  
+            />   */}
 
             {/* <Route
               path ="/acceptedhelp/:id" exact component = {AcceptedHelp}
