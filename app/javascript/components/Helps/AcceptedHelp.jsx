@@ -34,6 +34,7 @@ const AcceptedHelp = (props) => {
             <h3>Type of Request: {acceptedHelp.data.attributes.help.request_type}</h3>
             <p>Description: {acceptedHelp.data.attributes.help.description}</p>
           </div>
+          <div>Message component</div>
         </Fragment>
       }
     </div>
