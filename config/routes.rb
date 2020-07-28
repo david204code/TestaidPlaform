@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   
   get '/helps/:id/user', to: 'helps#helpUser'
 
+  resources :messages
   resources :conversations
 
   # resources :helps

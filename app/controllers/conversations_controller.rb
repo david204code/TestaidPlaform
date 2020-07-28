@@ -16,7 +16,7 @@ class ConversationsController < ApplicationController
   def edit
   end
 
-  # new to be updated
+  # needs to be updated
   def create 
     @conversation = Conversation.new(conversation_params)
     if conversation.save
