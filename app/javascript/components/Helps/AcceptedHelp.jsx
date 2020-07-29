@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
+import Conversation from '../Conversation';
 
 const AcceptedHelp = (props) => {
   const [acceptedHelp, setacceptedHelp] = useState({})
@@ -34,7 +35,7 @@ const AcceptedHelp = (props) => {
             <h3>Type of Request: {acceptedHelp.data.attributes.help.request_type}</h3>
             <p>Description: {acceptedHelp.data.attributes.help.description}</p>
           </div>
-          <div>Message component</div>
+          <Conversation />
         </Fragment>
       }
     </div>

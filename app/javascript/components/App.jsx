@@ -17,6 +17,7 @@ import ConversationList from './ConversationList';
 import Helps from './Helps/Helps';
 import AcceptedHelps from './Helps/AcceptedHelps';
 import AcceptedHelp from './Helps/AcceptedHelp';
+import Conversation from './Conversation';
 
 class App extends React.Component {
 
@@ -137,7 +138,8 @@ class App extends React.Component {
             {/* <Route exact path ="/" component ={Helps} /> */}
             <Route exact path ="/" component ={AcceptedHelps} />
             <Route exact path ="/acceptedhelps/:id" component ={AcceptedHelp} />
-
+            
+            {/* <Route exact path ="/" component ={Conversation} /> */}
 
 
             {/* <Route 

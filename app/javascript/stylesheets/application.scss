@@ -1,2 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./custom";
+
+.chat-room {
+  height: 100vh;
+  // have everyscroll within
+  overflow-y: hidden;
+} 
