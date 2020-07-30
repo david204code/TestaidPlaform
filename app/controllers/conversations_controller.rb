@@ -19,12 +19,15 @@ class ConversationsController < ApplicationController
   # needs to be updated
   def create 
     @conversation = Conversation.new(conversation_params)
-    if conversation.save
-      serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        ConversationSerializer.new(conversation)
-      ).serializable_hash
-      ActionCable.server.broadcast 'conversations_channel', serialized_data
-      head :ok
+
+    unless @conversation.save
+      render json: @conversation.errors, status: :unprocessable_entity
+    end
+
+    if @conversation.save
+      render json: @conversation
+    else
+      render json: @conversation.errors, status: :unprocessable_entity 
     end
   end
 
@@ -55,7 +58,7 @@ class ConversationsController < ApplicationController
   end
 
   def conversation_params
-    params.require(:conversation).permit(:title)
+    params.require(:conversation).permit(:title, :accepted_help_id)
   end
 
 end

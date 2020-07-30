@@ -124,14 +124,14 @@ class App extends React.Component {
       <div>
         <BrowserRouter>
 
-          {/* <Route
+          <Route
             render ={props => (
               <Navbar {...props}
                 isLoggedin = {this.state.isLoggedin}
                 handleLogOut = {this.handleLogOut} 
             />
             )}
-          /> */}
+          />
 
           <Switch>
 

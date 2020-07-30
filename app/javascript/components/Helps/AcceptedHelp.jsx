@@ -30,12 +30,13 @@ const AcceptedHelp = (props) => {
         <Fragment>
           <div key ={acceptedHelp.data.id}>
             <h1>AcceptedHelp</h1>
-            {console.log(acceptedHelp.data)}
+            {/* {console.log(acceptedHelp.data)} */}
             <h1>Title: {acceptedHelp.data.attributes.help.title}</h1>
             <h3>Type of Request: {acceptedHelp.data.attributes.help.request_type}</h3>
             <p>Description: {acceptedHelp.data.attributes.help.description}</p>
           </div>
-          <Conversation />
+          {/* need to pass in the props of the acceptedHelp ID */}
+          <Conversation acceptedHelp={acceptedHelp.data}/>
         </Fragment>
       }
     </div>
