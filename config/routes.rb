@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :accepted_helps
   get 'accepted_helps1', to: 'accepted_helps#index1'
   get 'accepted_help/:id', to: 'accepted_helps#show1'
+  get 'latest/accepted_help', to: 'accepted_helps#getLast'
   
   get '/helps/:id/user', to: 'helps#helpUser'
 

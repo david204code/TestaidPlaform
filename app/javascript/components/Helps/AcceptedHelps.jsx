@@ -27,7 +27,7 @@ const AcceptedHelps = () => {
       <h1>
         Title: {item.attributes.help.title}
       </h1>  
-      <Link to = {`/acceptedhelps/${item.id}`}>
+      <Link to = {`/acceptedhelp/${item.id}`}>
         View and chat
       </Link>    
     </div>

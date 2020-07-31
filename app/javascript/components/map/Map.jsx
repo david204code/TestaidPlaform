@@ -33,11 +33,11 @@ class Map extends React.Component {
   }
 
   onClickMap(e) {
-    console.log(e.lngLat);
+    // console.log(e.lngLat);
   }
 
   onDblClick(e) {
-    console.log("Hi", e.lngLat[0], e.lngLat[1]);
+    // console.log("Hi", e.lngLat[0], e.lngLat[1]);
   }
 
   componentWillMount() {
@@ -74,7 +74,7 @@ class Map extends React.Component {
 
   _onClickMarker = helps => {
     this.setState({popupInfo: helps});
-    console.log(helps.location_lat);
+    // console.log(helps.location_lat);
   };
 
   _renderPopup() {

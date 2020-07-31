@@ -29,8 +29,6 @@ class Conversation extends React.Component {
 
     axios.post(`http://localhost:3000/conversations`,
     {
-      // accepted_help_id: acceptedHelpID,
-      // title: conversationTitle,
       conversation: {
         accepted_help_id: acceptedHelpID[0],
         title: conversationTitle[0],

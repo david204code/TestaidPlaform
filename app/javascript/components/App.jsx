@@ -137,7 +137,7 @@ class App extends React.Component {
 
             {/* <Route exact path ="/" component ={Helps} /> */}
             <Route exact path ="/" component ={AcceptedHelps} />
-            <Route exact path ="/acceptedhelps/:id" component ={AcceptedHelp} />
+            <Route exact path ="/acceptedhelp/:id" component ={AcceptedHelp} />
             
             {/* <Route exact path ="/" component ={Conversation} /> */}
 

@@ -28,8 +28,8 @@ class AcceptedHelpsController < ApplicationController
 
   def index
     @accepted_helps = AcceptedHelp.all
-    # @help = Help.all
-    render json: @accepted_helps
+    # render json: @accepted_helps
+    render json: @accepted_helps.to_json( :methods => [:conversation])
   end
 
   def index1

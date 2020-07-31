@@ -42,17 +42,17 @@ class Request extends React.Component {
 
     axios.post(`http://localhost:3000/accepted_helps`, {withCredentials: true, help_id: help.id})
       .then(response => {
-        axios.get(`http://localhost:3000/${help.id}/accepted_help/last`)
+        axios.get(`http://localhost:3000/latest/accepted_help`)
         .then(response => {
           // console.log(response.data)
           this.setState({
             accepted: response.data,
-            // acceptedId: response.data.id,
+            acceptedId: response.data.id,
           })
-          // console.log(this.state.accepted.id);
+          console.log("this.state.accepted.id: " + this.state.accepted.id);
           acceptedId = this.state.accepted.id;
-          console.log(acceptedId);
-          this.props.history.push(`/acceptedhelp/${acceptedId}`, {withCredentials: true, help_id: help.id});
+          console.log("acceptedId: " + acceptedId);
+          this.props.history.push(`/acceptedhelp/${acceptedId}`);
         })
         .catch(error => console.log(error))
     
@@ -67,19 +67,6 @@ class Request extends React.Component {
       .catch(error => console.log('api errors:', error.response)
     )
     alert("Congrgulation on accepting this request");    
-    // this.props.history.push(`/dashboard`);
-    // window.location.reload(); 
-    
-    // axios.get(`http://localhost:3000/helps/${help.id}/accepted_help/last`, {withCredentials: true, help_id: help.id})
-    //   .then(response => {
-    //     console.log(response.data)
-    //     this.setState({accepted: response.data})
-    //     console.log(this.state.accepted.id);
-    //   })
-    //   .catch(error => console.log(error))
-
-    // this.props.history.push(`/helps/${help.id}/acceptedhelp/${accepted.id}`, {withCredentials: true, help_id: help.id, accepted_id: accepted.id});
-    // this.props.history.push(`/acceptedhelp`);
   };
 
   render() {
