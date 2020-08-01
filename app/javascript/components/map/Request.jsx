@@ -39,35 +39,56 @@ class Request extends React.Component {
 
     let acceptedId;
     // console.log(help.id);
+    let acceptedHelp;
 
     axios.post(`http://localhost:3000/accepted_helps`, {withCredentials: true, help_id: help.id})
       .then(response => {
         axios.get(`http://localhost:3000/latest/accepted_help`)
-        .then(response => {
-          // console.log(response.data)
-          this.setState({
-            accepted: response.data,
-            acceptedId: response.data.id,
+          .then(response => {
+            // console.log(response.data)
+            this.setState({
+              accepted: response.data,
+              acceptedId: response.data.id,
+            })
+            // console.log("this.state.accepted.id: " + this.state.accepted.id);
+            acceptedId = this.state.accepted.id;
+            // console.log("acceptedId: " + acceptedId);
+            // this.props.history.push(`/acceptedhelp/${acceptedId}`);
+            axios.get(`http://localhost:3000/accepted_help/${acceptedId}`)
+              .then (response => {
+              // console.log(response.data.data)
+              // console.log(response.data.data.attributes.help)
+              this.setState({
+                acceptedHelp: response.data.data
+              })
+              acceptedHelp = this.state.acceptedHelp;
+              // console.log(acceptedHelp.attributes)
+              // console.log(acceptedHelp.id)
+              // console.log(acceptedHelp.attributes.help.title)
+              axios.post(`http://localhost:3000/conversations`, 
+              {
+                conversation: {
+                title: acceptedHelp.attributes.help.title,
+                accepted_help_id: acceptedHelp.id,
+                }
+              },
+              { withCredentials: true }
+              ).then(respone => {
+                if (respone.data.status === 'created') {
+                console.log(response)
+                }
+              }).catch(error => {
+                console.log("not created", error);
+              });
+              this.props.history.push(`/acceptedhelp/${acceptedId}`);
+            })
           })
-          console.log("this.state.accepted.id: " + this.state.accepted.id);
-          acceptedId = this.state.accepted.id;
-          console.log("acceptedId: " + acceptedId);
-          this.props.history.push(`/acceptedhelp/${acceptedId}`);
+        .catch(error => console.log(error))    
         })
-        .catch(error => console.log(error))
-    
-        if (response.data.logged_in) {
-          this.props.handleSuccessfulAuth(response.data)
-        } else {
-          this.setState ({
-            errors: response.data.errors
-          })
-        }
-      })
       .catch(error => console.log('api errors:', error.response)
-    )
-    alert("Congrgulation on accepting this request");    
-  };
+      )
+      alert("Congrgulation on accepting this request");    
+    };
 
   render() {
     const { help } = this.state;
@@ -125,25 +146,6 @@ class Request extends React.Component {
                 </button>
               </form>
             </div>
-            {/* <div className ="col-md-4">
-              <a
-                // target ="_blank"
-                href ="http://localhost:3000/message"
-              >
-                <button>
-                  Send a message
-                </button>
-              </a>
-              <Link
-                to ="/message"
-                className =""
-                role ="button"
-              >
-                <button>
-                  Send a message
-                </button>
-              </Link>
-            </div> */}
           </div>
         </div>
 
