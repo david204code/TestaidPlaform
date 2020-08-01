@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
-import Help from './Help';
+import { BroswerRouter as Router, Link } from 'react-router-dom';
 
 const Helps = () => {
   const [helps, setHelps] = useState([])
@@ -15,16 +14,25 @@ const Helps = () => {
       setHelps(resp.data.data)
     })
     .catch( resp => console.log(resp) )
-  }, [helps.length])
+  }, [])
 
   const list = helps.map( item => {
-    console.log(item)
+    // console.log(item)
     return (
-      <Help 
-        key ={item.id}
-        attributes ={item.attributes}
-        id ={item.id}
-    />
+      <div key ={item.id}>
+        <h1>
+          User of Help: {item.attributes.user.user_id}
+        </h1>
+        <h1>
+          User of AcceptedHelp: {item.attributes.user.email}
+        </h1>
+        <h1>
+          Title: {item.attributes.title}
+        </h1>  
+        <Link to = {`/myhelp/${item.id}`}>
+          View and chat
+        </Link>    
+      </div>
     )
   })
 

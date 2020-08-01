@@ -6,7 +6,7 @@ import Welcome from '../components/pages/Welcome';
 import Home from '../components/pages/Home';
 import Dashboard from '../components/pages/Dashboard';
 import Map from '../components/map/Map';
-import Help from './help1/Help';
+import Post from './post/Help';
 import Login from '../components/auth/Login';
 import Signup from '../components/auth/SignUp';
 import Notice from '../components/pages/Notice';
@@ -15,6 +15,7 @@ import Request from '../components/map/Request';
 import Message from './map/Message';
 import ConversationList from './ConversationList';
 import Helps from './Helps/Helps';
+import Help from './Helps/Help';
 import AcceptedHelps from './Helps/AcceptedHelps';
 import AcceptedHelp from './Helps/AcceptedHelp';
 import Conversation from './Conversation';
@@ -138,10 +139,8 @@ class App extends React.Component {
             {/* <Route exact path ="/" component ={Helps} /> */}
             <Route exact path ="/" component ={AcceptedHelps} />
             <Route exact path ="/acceptedhelp/:id" component ={AcceptedHelp} />
+            <Route exact path ="/myhelp/:id" component ={Help} />
             
-            {/* <Route exact path ="/" component ={Conversation} /> */}
-
-
             {/* <Route 
               exact path ={"/"}   
               render ={props => (
@@ -222,8 +221,8 @@ class App extends React.Component {
             />   */}
 
             <PrivateRoute
-              exact path ={"/help"}
-              component ={ Help }
+              exact path ={"/post"}
+              component ={ Post }
               user ={this.state.user}
               render ={props => (
                   <Help {...props}

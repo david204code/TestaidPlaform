@@ -17,28 +17,23 @@ const AcceptedHelps = () => {
   }, [setacceptedHelps.length])
 
   const list = acceptedHelps.map( item => {
-    console.log(item.attributes)
+    // console.log(item.attributes)
     // console.log(item.attributes.help)
     return (
-    <div key ={item.id}>
-      <h1>
-        User of Help: {item.attributes.help.user_id}
-      </h1>
-      <h1>
-        User of AcceptedHelp: {item.attributes.user.email}
-      </h1>
-      <h1>
-        Title: {item.attributes.help.title}
-      </h1>  
-      <Link to = {`/acceptedhelp/${item.id}`}>
-        View and chat
-      </Link>    
-    </div>
-    //   <Help 
-    //     key ={item.id}
-    //     attributes ={item.attributes}
-    //     id ={item.id}
-    // />
+      <div key ={item.id}>
+        <h1>
+          User of Help: {item.attributes.help.user_id}
+        </h1>
+        <h1>
+          User of AcceptedHelp: {item.attributes.user.email}
+        </h1>
+        <h1>
+          Title: {item.attributes.help.title}
+        </h1>  
+        <Link to = {`/acceptedhelp/${item.id}`}>
+          View and chat
+        </Link>    
+      </div>
     )
   })
 

@@ -68,7 +68,7 @@ class Navbar extends React.Component {
             <Link to ="/map"><MenuOption>Map</MenuOption></Link>
           </LinkWrapper>
           <LinkWrapper>
-            <Link to ="/help"><MenuOption>Submit a post</MenuOption></Link>
+            <Link to ="/post"><MenuOption>Submit a post</MenuOption></Link>
           </LinkWrapper>
           <LinkWrapper>
             <Link to ="/dashboard"><MenuOption>Dashboard</MenuOption></Link>
