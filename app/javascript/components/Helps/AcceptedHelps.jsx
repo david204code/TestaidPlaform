@@ -22,7 +22,10 @@ const AcceptedHelps = () => {
     return (
     <div key ={item.id}>
       <h1>
-        Help: {item.attributes.help.user_id}
+        User of Help: {item.attributes.help.user_id}
+      </h1>
+      <h1>
+        User of AcceptedHelp: {item.attributes.user.email}
       </h1>
       <h1>
         Title: {item.attributes.help.title}

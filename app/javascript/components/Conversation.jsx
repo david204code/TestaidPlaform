@@ -51,7 +51,7 @@ class Conversation extends React.Component {
           Hello from Conversation Component, AcceptedHelp ID {this.props.acceptedHelp.id}
         </div>
         <form onSubmit ={this.addConversation}>
-          <button>
+          <button type ="submit">
             Start
           </button>
         </form>

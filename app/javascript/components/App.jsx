@@ -6,7 +6,7 @@ import Welcome from '../components/pages/Welcome';
 import Home from '../components/pages/Home';
 import Dashboard from '../components/pages/Dashboard';
 import Map from '../components/map/Map';
-// import Help from './help1/Help';
+import Help from './help1/Help';
 import Login from '../components/auth/Login';
 import Signup from '../components/auth/SignUp';
 import Notice from '../components/pages/Notice';
@@ -221,7 +221,7 @@ class App extends React.Component {
               path ="/acceptedhelp/:id" exact component = {AcceptedHelp}
             />   */}
 
-            {/* <PrivateRoute
+            <PrivateRoute
               exact path ={"/help"}
               component ={ Help }
               user ={this.state.user}
@@ -231,7 +231,7 @@ class App extends React.Component {
                     isLoggedin = {this.state.isLoggedin}
                   />
                 )}
-            /> */}
+            />
 
             <Route 
               exact path ={"/message"}

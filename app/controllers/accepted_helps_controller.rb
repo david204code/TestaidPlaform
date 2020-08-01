@@ -39,13 +39,13 @@ class AcceptedHelpsController < ApplicationController
 
   def show
     @accepted_helps ||= AcceptedHelp.find(params[:id])
+    # render json: @accepted_helps.user.email
     render json: @accepted_helps
-    # render json: @accepted_helps.help.user.email
   end
 
   def show1
-    accepted_helps = AcceptedHelp.find_by(id: params[:id])
-    render json: AccepetedHelpSerializer.new(accepted_helps).serialized_json
+    @accepted_helps = AcceptedHelp.find_by(id: params[:id])
+    render json: AccepetedHelpSerializer.new(@accepted_helps).serialized_json
   end
 
   # def getId
