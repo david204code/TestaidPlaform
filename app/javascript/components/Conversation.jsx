@@ -85,7 +85,7 @@ const Conversation = (props) => {
                 Start
               </button>
             </form> */}
-            <Message conversationID ={conversation.id} user ={props.user}/>
+            <Message conversation ={conversation} user ={props.user}/>
           </Fragment>
         }
       </div>
