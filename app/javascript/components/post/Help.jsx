@@ -59,7 +59,7 @@ class Help extends React.Component {
     this.setState({
       location_long: event.lngLat[0], location_lat: event.lngLat[1] 
     })
-    console.log("Longitude:",event.lngLat[0], "Latitude:", event.lngLat[1]);
+    // console.log("Longitude:",event.lngLat[0], "Latitude:", event.lngLat[1]);
   };
 
   handleSubmit(event) {
@@ -82,7 +82,7 @@ class Help extends React.Component {
       { withCredentials: true }
     ).then(response => {
       if (response.data.status === 'created') {
-        console.log("help request submitted")
+        // console.log("help request submitted")
       }
     }).catch(error => {
       console.log("registration", error);

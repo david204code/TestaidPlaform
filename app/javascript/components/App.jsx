@@ -134,9 +134,9 @@ class App extends React.Component {
           />
 
           <Switch>
-
+          <Route exact path ="/" component ={Welcome} />
             {/* <Route exact path ="/" component ={Helps} /> */}
-            <Route exact path ="/" component ={AcceptedHelps} />
+            {/* <Route exact path ="/" component ={AcceptedHelps} /> */}
             <Route exact path ={"/acceptedhelp/:id"} 
               render ={props => (
                 <AcceptedHelp {...props}

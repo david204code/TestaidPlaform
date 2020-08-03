@@ -154,7 +154,7 @@ class Map extends React.Component {
             <div className ="row">
               <div className ="col-md-4 offset-md-2">
                 <Link 
-                  to ='/help'
+                  to ='/post'
                   className =''
                   role ='button'
                 >
