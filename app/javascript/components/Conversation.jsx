@@ -1,20 +1,36 @@
-import React, { Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import Message from './Message';
 import axios from 'axios';
 
-class Conversation extends React.Component {
+const Conversation = (props) => {
+  const [ conversation, setConversation ] = useState({})
+  const [ loaded, setLoaded ] = useState(false)
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      conversationTitle: [this.props.acceptedHelp.attributes.help.title],
-      acceptedHelpID: [this.props.acceptedHelp.id],
-      event: {}
-    };
+  useEffect(() => {
+    axios.get(`http://localhost:3000/conversation/${props.acceptedHelp.id}`)
+    .then( response => {
+      // console.log(response.data)
+      setConversation(response.data)
+      setLoaded(true)
+    })
+    .catch(error => console.log(error))
+}, [])
+
+// class Conversation extends React.Component {
+
+//   constructor(props) {    
+//     super(props);
+
+//     this.state = {
+//       conversationTitle: [this.props.acceptedHelp.attributes.help.title],
+//       acceptedHelpID: [this.props.acceptedHelp.id],
+//       conversation: [],
+//       event: {}
+//     };
     
-    // this.addConversation = this.addConversation.bind(this);
+//     // this.addConversation = this.addConversation.bind(this);
 
-  }
+//   };
 
   // addConversation = (event) => {
   //   event.preventDefault()
@@ -43,22 +59,37 @@ class Conversation extends React.Component {
   //     console.log("not created", error);
   //   });
   // }
+  // componentDidMount = () => {
+  //   axios.get(`http://localhost:3000/conversation/${this.props.acceptedHelp.id}`)
+  //   .then( response => {
+  //     console.log(response.data)
+  //     this.setState({conversation: response.data})
+  //   })
+  //   .catch(error => console.log(error))
+  // }
 
-  render() {
+  // render() {
+    // let { conversation } = this.state;
+    
     return (
-      <Fragment>
-        <div>
-          Hello from Conversation Component, AcceptedHelp ID {this.props.acceptedHelp.id}
-        </div>
-        {/* <form onSubmit ={this.addConversation}>
-          <button type ="submit">
-            Start
-          </button>
-        </form> */}
-        <Message user ={this.props.user}/>
-      </Fragment>
+      <div>
+        {
+          loaded && 
+          <Fragment>
+            {/* {console.log(conversation)} */}
+            <div>
+              Hello from Conversation Component, AcceptedHelp ID {props.acceptedHelp.id}
+            </div>
+            {/* <form onSubmit ={this.addConversation}>
+              <button type ="submit">
+                Start
+              </button>
+            </form> */}
+            <Message conversationID ={conversation.id} user ={props.user}/>
+          </Fragment>
+        }
+      </div>
     )
   }
-}
 
 export default Conversation;
