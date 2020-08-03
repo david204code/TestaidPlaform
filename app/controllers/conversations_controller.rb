@@ -9,6 +9,11 @@ class ConversationsController < ApplicationController
   def show
   end
 
+  def findAccepted
+    @conversation = Conversation.find_by(accepted_help_id: params[:id])
+    render json: @conversation
+  end
+
   def new
     @conversation = Conversation.new
   end

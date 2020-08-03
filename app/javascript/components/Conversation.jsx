@@ -55,7 +55,7 @@ class Conversation extends React.Component {
             Start
           </button>
         </form> */}
-        <Message />
+        <Message user ={this.props.user}/>
       </Fragment>
     )
   }

@@ -36,7 +36,7 @@ const AcceptedHelp = (props) => {
             <p>Description: {acceptedHelp.data.attributes.help.description}</p>
           </div>
           {/* need to pass in the props of the acceptedHelp ID */}
-          <Conversation acceptedHelp={acceptedHelp.data}/>
+          <Conversation acceptedHelp={acceptedHelp.data} user={props.user}/>
         </Fragment>
       }
     </div>
