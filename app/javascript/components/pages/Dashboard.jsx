@@ -26,8 +26,8 @@ class Dashboard extends React.Component {
         {/* <h1>Dashboard</h1>
         <h1>Status: {this.props.isLoggedin.toString()}</h1>
         <h1>User: {this.props.user.email}</h1> */}
-        <Helps />
-        <AcceptedHelps />
+        <Helps {...this.props.user}/>
+        <AcceptedHelps {...this.props.user}/>
       </div>
     );
   };

@@ -17,14 +17,12 @@ class MessagesController < ApplicationController
 
   # needs to be updated
   def create
-    message = Message.new(message_params)
-    conversation = Conversation.find(message_params[:conversation_id])
-    if message.save
-      serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        MessageSerializer.new(message)
-      ).serializable_hash
-      MessagesChannel.broadcast_to conversation, serialized_data
-      head :ok
+    @message = Message.new(message_params)
+    @conversation = Conversation.find(message_params[:conversation_id])
+    if @message.save
+      render json: @message
+    else
+      render json: @message.errors, status: :unprocessable_entity
     end
   end
 

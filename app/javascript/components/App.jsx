@@ -12,7 +12,6 @@ import Signup from '../components/auth/SignUp';
 import Notice from '../components/pages/Notice';
 import Request from '../components/map/Request';
 // import AcceptedHelp from './map/AcceptedHelp';
-import Message from './map/Message';
 import ConversationList from './ConversationList';
 import Helps from './Helps/Helps';
 import Help from './Helps/Help';
@@ -138,7 +137,13 @@ class App extends React.Component {
 
             {/* <Route exact path ="/" component ={Helps} /> */}
             <Route exact path ="/" component ={AcceptedHelps} />
-            <Route exact path ="/acceptedhelp/:id" component ={AcceptedHelp} />
+            <Route exact path ={"/acceptedhelp/:id"} 
+              render ={props => (
+                <AcceptedHelp {...props}
+                  user = {this.state.user}
+                />
+              )}
+            />
             <Route exact path ="/myhelp/:id" component ={Help} />
             
             {/* <Route 
@@ -230,11 +235,6 @@ class App extends React.Component {
                     isLoggedin = {this.state.isLoggedin}
                   />
                 )}
-            />
-
-            <Route 
-              exact path ={"/message"}
-              component = { Message }
             />
 
             <Route 
