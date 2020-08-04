@@ -5,8 +5,13 @@ class Message extends React.Component {
   
   constructor(props) {
     super(props);
-    this.state ={ 
+    this.state = {
+      content :"", 
     };
+
+    // explaination needed here!
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   
   componentDidMount(){
@@ -18,11 +23,11 @@ class Message extends React.Component {
     const csrfToken = document.querySelector('[name=csrf-token]').content
     axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
 
-    const content = content;
+    let content = content;
 
     axios.post(`http://localhost:3000/messages`,
       {
-        content: "content",
+        content: this.state.content,
         conversation_id: this.props.conversation.id,
         user_id: this.props.user.id
       },
@@ -34,7 +39,16 @@ class Message extends React.Component {
     }).catch(error => {
       console.log("not created", error);
     });
-  }
+    this.setState({
+      content: ''
+    });
+  };
+
+  handleChange(event){
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
   
   render() {
     return (
@@ -43,6 +57,15 @@ class Message extends React.Component {
           {/* {console.log(this.props.user.id)} */}
           Hello from Message Component
         <form onSubmit ={this.handleSubmit}>
+          <textarea 
+            row ="1" 
+            cols ="50"
+            name ="content"
+            required
+            value ={this.state.content}
+            onChange ={this.handleChange}
+          />
+          
           <button type ="submit">
             Start
           </button>
