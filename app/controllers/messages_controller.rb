@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
 
   def index
     @messages = Message.all
+    render json: @messages
   end
 
   def show
@@ -18,7 +19,7 @@ class MessagesController < ApplicationController
   # needs to be updated
   def create
     @message = Message.new(message_params)
-    @conversation = Conversation.find(message_params[:conversation_id])
+    # @conversation = Conversation.find(message_params[:conversation_id])
     if @message.save
       render json: @message
     else
@@ -53,7 +54,7 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:title, :conversation_id)
+    params.require(:message).permit(:content, :conversation_id, :user_id)
   end
 
 end
