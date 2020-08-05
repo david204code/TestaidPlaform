@@ -6,17 +6,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import App from '../components/App';
-import { ActionCableProvider } from 'react-actioncable-provider';
+import  actionCable  from 'actioncable';
 import { API_WS_ROOT } from '../constants/index';
 
 document.addEventListener('DOMContentLoaded', () => {
+  const CableApp = {}
+  CableApp.cable = actionCable.createConsumer('ws://localhost:3000/cable')
   ReactDOM.render(
-    <Router>
-      <Route path ="/" component ={App} />
+    // <Router>
+    //   <Route path ="/" component ={App} />
+    // </Router>,
+    <Router >
+      <App cableApp={CableApp} />
     </Router>,
-    // <ActionCableProvider url={API_WS_ROOT}>
-    //   <App />
-    // </ActionCableProvider>,
     document.body.appendChild(document.createElement('div')),
   )
 })

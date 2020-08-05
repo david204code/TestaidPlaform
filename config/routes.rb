@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   # resources :messages, except: [:index]
   # resources :conversations, only: [:index, :create]
   # resources :messages, only: [:create]
-  # mount ActionCable.server => '/cable'
+  mount ActionCable.server => '/cable'
 
   match '*pages', to: 'pages#home', via: :all
 end
