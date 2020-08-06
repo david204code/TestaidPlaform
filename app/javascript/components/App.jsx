@@ -141,6 +141,7 @@ class App extends React.Component {
               render ={props => (
                 <AcceptedHelp {...props}
                   user = {this.state.user}
+                  cableApp = {this.props.cableApp}
                 />
               )}
             />
