@@ -6,7 +6,12 @@ class Message extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      content :"", 
+      messages: [],
+      contents: [],
+      content1: [
+        {id: 35, name: 'jumper', color: 'red', price: 20},
+        {id: 42, name: 'shirt', color: 'blue', price: 15},
+        {id: 71, name: 'socks', color: 'black', price: 5},      ] 
     };
 
     // explaination needed here!
@@ -16,6 +21,13 @@ class Message extends React.Component {
   
   componentDidMount(){
     // console.log(this.props.conversation)
+    axios.get(`http://localhost:3000/conversation/${this.props.conversation.id}`)
+    .then ( response => {
+      // console.log(response.data.messages)
+      this.setState({contents: response.data.messages});
+      // console.log(this.state.contents)
+    })
+    .catch ( response => console.log(response) )
   }
 
   handleSubmit = event => {
@@ -51,11 +63,21 @@ class Message extends React.Component {
   };
   
   render() {
+    // {console.log(this.state.contents)}
+
+    const contents = this.state.contents.map((content, key) =>
+    <p key ={content.id}>{content.content} from {content.user.email}</p>
+    );
+
     return (
       <Fragment>
         <div>
           {/* {console.log(this.props.user.id)} */}
+          {/* {console.log(this.state.contents)} */}
           Hello from Message Component
+
+          {contents}
+
         <form onSubmit ={this.handleSubmit}>
           <textarea 
             row ="1" 
