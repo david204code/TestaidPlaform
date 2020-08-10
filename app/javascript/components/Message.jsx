@@ -94,6 +94,12 @@ class Message extends React.Component {
           </button>
         </form>
         </div>
+
+        {/* <ConversationWebSocket 
+          cableApp = {this.props.cableApp}
+          conversation = {this.props.conversation}
+        /> */}
+
       </Fragment>
     )
   }

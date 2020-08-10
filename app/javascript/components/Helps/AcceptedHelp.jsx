@@ -41,7 +41,7 @@ class AcceptedHelp extends React.Component {
               <p>Description: {this.state.acceptedHelp.attributes.help.description}</p>
             </div>
             {/* // need to pass in the props of the acceptedHelp ID */}
-            <Conversation acceptedHelp={this.state.acceptedHelp} user={this.props.user}/>
+            <Conversation acceptedHelp={this.state.acceptedHelp} user={this.props.user} cableApp = {this.props.cableApp}/>
           </Fragment>
         }
       </div>
