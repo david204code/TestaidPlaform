@@ -2,45 +2,52 @@ import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import Conversation from '../Conversation';
 
-const AcceptedHelp = (props) => {
-  const [acceptedHelp, setacceptedHelp] = useState({})
-  // ensure the state is set before accessing/using the data
-  const [loaded, setLoaded] = useState(false)  
+class AcceptedHelp extends React.Component {
 
-  useEffect(() => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: this.props.match.params.id,
+      acceptedHelp: [],
+      loaded: false,
+    };
+    
+  }
 
-    const id = props.match.params.id
-    // console.log(props)
-
-    axios.get(`http://localhost:3000/accepted_help/${id}`)
+  componentDidMount() {
+    // console.log(this.state.id)
+    axios.get(`http://localhost:3000/accepted_help/${this.state.id}`)
     .then ( resp => {
       // console.log(resp.data.data)
       // console.log(resp.data.data.attributes.help)
-      setacceptedHelp(resp.data)
-      setLoaded(true)
+      this.setState({acceptedHelp: resp.data.data, loaded: true})
+      // console.log(this.state.acceptedHelp)
     })
     .catch ( resp => console.log(resp) )
-    // pass in an empty argument/array so it only runs once
-  }, [])
+  }
 
-  return (
-    <div>
-      {
-        loaded &&
-        <Fragment>
-          <div key ={acceptedHelp.data.id}>
-            <h1>AcceptedHelp</h1>
-            {/* {console.log(acceptedHelp.data)} */}
-            <h1>Title: {acceptedHelp.data.attributes.help.title}</h1>
-            <h3>Type of Request: {acceptedHelp.data.attributes.help.request_type}</h3>
-            <p>Description: {acceptedHelp.data.attributes.help.description}</p>
-          </div>
-          {/* need to pass in the props of the acceptedHelp ID */}
-          <Conversation acceptedHelp={acceptedHelp.data} user={props.user}/>
-        </Fragment>
-      }
-    </div>
-  )
-}
+  render() {
+    let loaded = this.state.loaded;
+    return (
+      <div>
+        {
+          loaded &&
+          <Fragment>
+            <div key ={this.state.acceptedHelp.attributes.id}>
+              <h1>AcceptedHelp</h1>
+              {/* {console.log(this.state.acceptedHelp)} */}
+              <h1>Title: {this.state.acceptedHelp.attributes.help.title}</h1>
+              <h3>Type of Request: {this.state.acceptedHelp.attributes.help.request_type}</h3>
+              <p>Description: {this.state.acceptedHelp.attributes.help.description}</p>
+            </div>
+            {/* // need to pass in the props of the acceptedHelp ID */}
+            <Conversation acceptedHelp={this.state.acceptedHelp} user={this.props.user}/>
+          </Fragment>
+        }
+      </div>
+    )
+  };
+
+};
 
 export default AcceptedHelp;
