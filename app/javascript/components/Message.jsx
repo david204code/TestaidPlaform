@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
+import ConversationWebSocket from './ConversationWebSocket';
 
 class Message extends React.Component {
   
@@ -8,10 +9,10 @@ class Message extends React.Component {
     this.state = {
       messages: [],
       contents: [],
-      content1: [
-        {id: 35, name: 'jumper', color: 'red', price: 20},
-        {id: 42, name: 'shirt', color: 'blue', price: 15},
-        {id: 71, name: 'socks', color: 'black', price: 5},      ] 
+      // content1: [
+      //   {id: 35, name: 'jumper', color: 'red', price: 20},
+      //   {id: 42, name: 'shirt', color: 'blue', price: 15},
+      //   {id: 71, name: 'socks', color: 'black', price: 5},      ] 
     };
 
     // explaination needed here!
