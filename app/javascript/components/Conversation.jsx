@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import Message from './Message';
+import Messages from './Messages';
 import axios from 'axios';
 
 // const Conversation = (props) => {
@@ -63,7 +63,7 @@ class Conversation extends React.Component {
   componentDidMount = () => {
     axios.get(`http://localhost:3000/conversation/${this.props.acceptedHelp.id}`)
     .then( response => {
-      console.log(response.data)
+      // console.log(response.data)
       this.setState({conversation: response.data, loaded: true})
     })
     .catch(error => console.log(error))
@@ -87,7 +87,7 @@ class Conversation extends React.Component {
                 Start
               </button>
             </form> */}
-            <Message conversation ={this.state.conversation} user ={this.props.user} cableApp = {this.props.cableApp}/>
+            <Messages conversation ={this.state.conversation} user ={this.props.user} cableApp = {this.props.cableApp}/>
           </Fragment>
         }
       </div>

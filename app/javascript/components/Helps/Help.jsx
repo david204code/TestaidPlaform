@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { BroswerRouter as Router, Link } from 'react-router-dom';
 import axios from 'axios';
-import Message from '../Message';
+import Messages from '../Messages';
 
 const Help = (props) => {
   const [help, setHelp] = useState({})
@@ -33,7 +33,7 @@ const Help = (props) => {
           <div>Description: {help.attributes.description}</div>
           <div>Request type: {help.attributes.request_type}</div>
           <div>User: {help.attributes.user.id}</div> 
-          <Message />
+          <Messages />
         </div>
       }
     </Fragment>

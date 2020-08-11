@@ -2,15 +2,18 @@ import React from 'react';
 
 class ConversationWebSocket extends React.Component {
   componentDidMount(){
-    this.props.getCoversationData(window.location.href.match(/\d+$/)[0])
+    // console.log(this.props.conversation)
+    // console.log(this.props.cableApp.cable.subscriptions)
+    // console.log(window.location.href.match(/\d+$/)[0])
+    // this.props.getCoversationData(window.location.href.match(/\d+$/)[0])
     //subscription.create() method is sending params to the subscribed action in ConversationsChannel
-    this.props.cableApp.room = this.props.cableApp.cable.subscription.create({
+    this.props.cableApp.conversation = this.props.cableApp.cable.subscriptions.create({
       channel: 'ConversationsChannel',
-      room: window.locatio.href.match(/\d+$/)[0]
+      conversation: window.location.href.match(/\d+$/)[0]
     },
     {
-      received: (updateRoom) => {
-        this.props.updateApp(updateRoom)
+      received: (updateConversation) => {
+        this.props.updateApp(updateConversation)
       }
     })
   }
