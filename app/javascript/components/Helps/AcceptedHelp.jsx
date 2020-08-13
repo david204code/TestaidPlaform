@@ -26,6 +26,13 @@ class AcceptedHelp extends React.Component {
     .catch ( resp => console.log(resp) )
   }
 
+  getConversation = (id) => {
+    axios.get(`http://localhost:3000/conversation/${id}`)
+    .then( response => {
+      console.log(response)
+    })
+  }
+
   render() {
     let loaded = this.state.loaded;
     return (
@@ -41,7 +48,12 @@ class AcceptedHelp extends React.Component {
               <p>Description: {this.state.acceptedHelp.attributes.help.description}</p>
             </div>
             {/* // need to pass in the props of the acceptedHelp ID */}
-            <Conversation acceptedHelp={this.state.acceptedHelp} user={this.props.user} cableApp = {this.props.cableApp}/>
+            <Conversation 
+              acceptedHelp={this.state.acceptedHelp}
+              getConversation ={this.getConversation} 
+              user={this.props.user} 
+              cableApp = {this.props.cableApp}
+            />
           </Fragment>
         }
       </div>

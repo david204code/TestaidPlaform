@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
-import Message from './Message'
+import MessageFeed from './MessageFeed'
 import ConversationWebSocket from './ConversationWebSocket';
 
 class Messages extends React.Component {
@@ -8,7 +8,7 @@ class Messages extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: [],
+      message: '',
       contents: [],
       // content1: [
       //   {id: 35, name: 'jumper', color: 'red', price: 20},
@@ -55,34 +55,23 @@ class Messages extends React.Component {
       { withCredentials: true }
     ).then(response => {
       if (response.status === 200) {
-        console.log("Message created")
+        // console.log("Message created")
       }
+      let messageDiv = document.getElementById('messages')
+      messageDiv.scrollTop = messageDiv.scrollHeight
     }).catch(error => {
       console.log("not created", error);
     });
     this.setState({
-      content: ''
+      message: ''
     });
   };
 
   handleChange(event){
     this.setState({
-      [event.target.name]: event.target.value,
+      message: event.target.value,
     });
   };
-
-  componentDidUpdate() {
-    let messageDiv = document.getElementById('message')
-    // messageDiv.scrollToTop = messageDiv.scrollHeight
-  }
-
-  displayMessage = (contents) => {
-     return this.state.contents.map((content) =>{
-      //  console.log(content)
-      return <Message key ={content.id} content ={content}/>
-     }
-    );
-  }
   
   render() {
     // {console.log(this.state.contents)}
@@ -99,17 +88,14 @@ class Messages extends React.Component {
           Hello from Message Component
 
           {/* {contents} */}
-        <div id ='messages'>
-          {this.displayMessage(this.state.contents)}
-        </div>
-
+          <MessageFeed contents ={this.state.contents} user ={this.props.user}/>
         <form onSubmit ={this.handleSubmit}>
           <textarea 
             row ="1" 
             cols ="50"
             name ="content"
             required
-            value ={this.state.content}
+            value ={this.state.message}
             onChange ={this.handleChange}
           />
           

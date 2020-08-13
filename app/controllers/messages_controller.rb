@@ -19,12 +19,15 @@ class MessagesController < ApplicationController
   # needs to be updated
   def create
     @message = Message.new(message_params)
-    # @conversation = Conversation.find(message_params[:conversation_id])
+    conversation = Conversation.find(message_params[:conversation_id])
     if @message.save
-      render json: @message
+      ConversationsChannel.broadcast_to(conversation, {
+        conversation: ConversationSerializer.new(conversation)
+      })
     else
       render json: @message.errors, status: :unprocessable_entity
     end
+    # render json: MessageSerializer.new(@message)
   end
 
   def update

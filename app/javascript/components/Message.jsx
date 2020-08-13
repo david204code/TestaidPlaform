@@ -7,7 +7,7 @@ class Message extends React.Component {
     return (
       <Fragment>
         {/* {console.log(this.props.content)} */}
-        <p>{this.props.content.content} from {this.props.content.user.email}</p>
+        <p id ="message">{this.props.content.content} from {this.props.content.user.email}</p>
       </Fragment>
     )
   }
