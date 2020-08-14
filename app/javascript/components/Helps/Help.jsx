@@ -33,7 +33,7 @@ const Help = (props) => {
           <div>Description: {help.attributes.description}</div>
           <div>Request type: {help.attributes.request_type}</div>
           <div>User: {help.attributes.user.id}</div> 
-          <Messages />
+          {/* <Messages /> */}
         </div>
       }
     </Fragment>

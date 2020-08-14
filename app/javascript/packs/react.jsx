@@ -6,8 +6,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import App from '../components/App';
-// import { ActionCableProvider } from 'react-actioncable-provider';
-// import { API_WS_ROOT } from '../constants/index';
 import actionCable from 'actioncable';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,12 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
   CableApp.cable = actionCable.createConsumer('ws://localhost:3000/cable')
   
   ReactDOM.render(
-    // <Router>
-    //   <Route path ="/" component ={App} />
-    // </Router>,
-    // <ActionCableProvider url={API_WS_ROOT}>
-    //   <App />
-    // </ActionCableProvider>,
     <Router>
       <App cableApp ={CableApp} />
     </Router>,

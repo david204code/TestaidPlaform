@@ -11,8 +11,6 @@ import Login from '../components/auth/Login';
 import Signup from '../components/auth/SignUp';
 import Notice from '../components/pages/Notice';
 import Request from '../components/map/Request';
-// import AcceptedHelp from './map/AcceptedHelp';
-import ConversationList from './ConversationList';
 import Helps from './Helps/Helps';
 import Help from './Helps/Help';
 import AcceptedHelps from './Helps/AcceptedHelps';
@@ -236,11 +234,6 @@ class App extends React.Component {
                     isLoggedin = {this.state.isLoggedin}
                   />
                 )}
-            />
-
-            <Route 
-              exact path ={"/conversationlist"}
-              component = { ConversationList }
             />
 
             <Route
