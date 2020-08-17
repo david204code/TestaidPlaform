@@ -57,6 +57,16 @@ class HelpsController < ApplicationController
     @helps = Help.all
     render json: HelpSerializer.new(@helps, option).serialized_json
   end
+
+  def myHelp
+    @helps = Help.find_by user_id: current_user
+    render json: HelpSerializer.new(@helps, option).serialized_json
+  end
+  
+  def counter
+    @helps = Help.find_by status: 'unfulfilled'
+    render json: @helps
+  end
   
   def show 
     @help ||= Help.find(params[:id])
