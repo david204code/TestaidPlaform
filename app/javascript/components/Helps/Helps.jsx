@@ -61,7 +61,7 @@ class Helps extends React.Component {
   }
 
   componentDidMount = () => {
-    axios.get(`http://localhost:3000/myHelp.json`)
+    axios.get(`http://localhost:3000/activeHelps.json`)
     .then( response => {
       // console.log(response.data)
       this.setState({
