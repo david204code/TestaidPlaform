@@ -59,7 +59,8 @@ class HelpsController < ApplicationController
   end
 
   def myHelp
-    @helps = Help.find_by user_id: current_user
+    # @helps = Help.find_by user_id: current_user
+    @helps = Help.where(user_id: current_user)
     render json: HelpSerializer.new(@helps, option).serialized_json
   end
   
