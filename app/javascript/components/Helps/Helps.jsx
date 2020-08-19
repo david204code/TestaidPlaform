@@ -55,7 +55,7 @@ class Helps extends React.Component {
     super(props);
 
     this.state ={
-      helps: {},
+      helps: [],
     };
 
   }
@@ -63,7 +63,30 @@ class Helps extends React.Component {
   componentDidMount = () => {
     axios.get(`http://localhost:3000/myHelp.json`)
     .then( response => {
-      console.log(response.data)
+      // console.log(response.data)
+      this.setState({
+        helps: response.data,
+      })
+    })
+  }
+
+  displayHelp = (helps) => {
+    // console.log(helps)
+    return helps.data && helps.data.map(help => {
+      // console.log(help)
+      return (
+        <div key ={help.id}>
+          {/* <h1>
+            User of Help: {help.attributes.user.id}
+          </h1> */}
+          <h4>
+            Title: {help.attributes.title}
+          </h4>  
+          <Link to = {`/myhelp/${help.id}`}>
+            View and chat
+          </Link>    
+        </div>
+      )
     })
   }
 
@@ -74,6 +97,7 @@ class Helps extends React.Component {
       <Fragment>
         <div>
           <h1>State of Helps</h1>
+          {this.displayHelp(this.state.helps)}
         </div>
       </Fragment>
     ) 
