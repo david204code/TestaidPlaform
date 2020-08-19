@@ -43,6 +43,7 @@ class AcceptedHelp extends React.Component {
             <div key ={this.state.acceptedHelp.attributes.id}>
               <h1>AcceptedHelp</h1>
               {/* {console.log(this.state.acceptedHelp)} */}
+              <h4>HelpID: {this.state.acceptedHelp.attributes.help_id}</h4>
               <h1>Title: {this.state.acceptedHelp.attributes.help.title}</h1>
               <h3>Type of Request: {this.state.acceptedHelp.attributes.help.request_type}</h3>
               <p>Description: {this.state.acceptedHelp.attributes.help.description}</p>

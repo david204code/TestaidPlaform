@@ -48,6 +48,11 @@ class AcceptedHelpsController < ApplicationController
     render json: AccepetedHelpSerializer.new(@accepted_helps).serialized_json
   end
 
+  def getAcceptedHelp
+    @accepted_helps = AcceptedHelp.where(user_id: current_user)
+    render json: AccepetedHelpSerializer.new(@accepted_helps).serialized_json
+  end
+
   # def getId
   #   @accepted_help ||= @help.accepted_helps.find(params[:id])
   #   render json: @accepted_help
