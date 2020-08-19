@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
+import Counter from '../Counter';
 
 const Card = styled.div`
   border: 1px solid #efefef;
@@ -74,6 +75,7 @@ class Navbar extends React.Component {
             <Link to ="/dashboard"><MenuOption>Dashboard</MenuOption></Link>
           </LinkWrapper>
         </Card>
+        <Counter />
       </div>
     );
   };
