@@ -75,7 +75,7 @@ class Navbar extends React.Component {
             <Link to ="/dashboard"><MenuOption>Dashboard</MenuOption></Link>
           </LinkWrapper>
         </Card>
-        <Counter />
+        {/* <Counter /> */}
       </div>
     );
   };

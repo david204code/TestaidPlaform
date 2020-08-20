@@ -16,6 +16,7 @@ import Help from './Helps/Help';
 import AcceptedHelps from './Helps/AcceptedHelps';
 import AcceptedHelp from './Helps/AcceptedHelp';
 import Conversation from './Conversation';
+import Counter from './Counter';
 
 class App extends React.Component {
 
@@ -127,10 +128,10 @@ class App extends React.Component {
               <Navbar {...props}
                 isLoggedin = {this.state.isLoggedin}
                 handleLogOut = {this.handleLogOut} 
-            />
+              />
             )}
           />
-
+          <Counter />
           <Switch>
           <Route exact path ="/" component ={Welcome} />
             {/* <Route exact path ="/" component ={Helps} /> */}
