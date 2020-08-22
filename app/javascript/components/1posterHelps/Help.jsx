@@ -12,11 +12,11 @@ const Help = (props) => {
     const id = props.match.params.id
     // console.log(id);
     
-    axios.get(`http://localhost:3000/help/${id}`)
+    axios.get(`http://localhost:3000/helpChat/${id}`)
     .then ( resp => {
-      // console.log(resp.data.data)
-      // console.log(resp.data.data.attributes)
-      setHelp(resp.data.data)
+      // console.log(resp)
+      console.log(resp.data)
+      setHelp(resp.data)
       setLoaded(true)
     })
     .catch ( resp => console.log(resp) )
@@ -29,10 +29,10 @@ const Help = (props) => {
         <div>
           {/* {console.log(help)} */}
           <div>Help ID: {help.id}</div>
-          <div>Title: {help.attributes.title}</div>
-          <div>Description: {help.attributes.description}</div>
-          <div>Request type: {help.attributes.request_type}</div>
-          <div>User: {help.attributes.user.id}</div> 
+          <div>Title: {help.title}</div>
+          <div>Description: {help.description}</div>
+          <div>Request type: {help.request_type}</div>
+          <div>User: {help.user_id}</div> 
           {/* <Messages /> */}
         </div>
       }

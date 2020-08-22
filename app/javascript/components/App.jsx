@@ -11,10 +11,10 @@ import Login from '../components/auth/Login';
 import Signup from '../components/auth/SignUp';
 import Notice from '../components/pages/Notice';
 import Request from '../components/map/Request';
-import Helps from './Helps/Helps';
-import Help from './Helps/Help';
-import AcceptedHelps from './Helps/AcceptedHelps';
-import AcceptedHelp from './Helps/AcceptedHelp';
+import Helps from './1posterHelps/Helps';
+import Help from './1posterHelps/Help';
+import AcceptedHelps from './2AccepterHelps/AcceptedHelps';
+import AcceptedHelp from './2AccepterHelps/AcceptedHelp';
 import Conversation from './Conversation';
 import Counter from './Counter';
 

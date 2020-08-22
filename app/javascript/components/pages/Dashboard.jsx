@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
-import Helps from '../Helps/Helps';
-import AcceptedHelps from '../Helps/AcceptedHelps' 
+import Helps from '../1posterHelps/Helps';
+import AcceptedHelps from '../2AccepterHelps/AcceptedHelps' 
 
 class Dashboard extends React.Component {
 
