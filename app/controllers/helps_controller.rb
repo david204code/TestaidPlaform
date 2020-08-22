@@ -63,6 +63,13 @@ class HelpsController < ApplicationController
     @helps = Help.where(user_id: current_user)
     render json: HelpSerializer.new(@helps, option).serialized_json
   end
+
+  def helpChat
+    # @helps = Help.find_by user_id: current_user
+    @helps = Help.where(user_id: current_user) && Help.find(params[:id])
+    render json: @helps.to_json( :methods => [:accepted_helps, :conversations, :messages])
+    # render json: HelpSerializer.new(@helps, option).serialized_json
+  end
   
   def unfulfilledHelps
     @helps = Help.where(status: 'unfulfilled')

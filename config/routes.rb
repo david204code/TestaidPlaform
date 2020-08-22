@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/helps1', to: 'helps#index1'
   get '/help/:id', to: 'helps#show1'
   get '/myHelp', to: 'helps#myHelp'
+  get '/helpChat/:id', to: 'helps#helpChat'
   get '/unfulfilledHelps', to: 'helps#unfulfilledHelps'
   get '/activeHelps', to: 'helps#activeHelp'
   get '/counter', to: 'helps#counter'
