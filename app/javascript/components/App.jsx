@@ -128,6 +128,7 @@ class App extends React.Component {
               <Navbar {...props}
                 isLoggedin = {this.state.isLoggedin}
                 handleLogOut = {this.handleLogOut} 
+                userEmail = {this.state.userEmail}
               />
             )}
           />

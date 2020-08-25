@@ -61,6 +61,12 @@ class Navbar extends React.Component {
           <button onClick={() => this.handleLogOutClick()}>Logout</button> :
           null
         }
+        {
+          this.props.isLoggedin ? 
+          <p className ="text-center">CurrentUser: {this.props.userEmail}</p> :
+          null
+        }
+        {/* <p className ="text-center">CurrentUser:{this.props.userEmail}</p> */}
         <Card>
           <LinkWrapper>
             <Link to =""><MenuOption>Home</MenuOption></Link>

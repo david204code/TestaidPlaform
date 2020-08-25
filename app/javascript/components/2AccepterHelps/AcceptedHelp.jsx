@@ -4,6 +4,8 @@ import Conversation from '../Conversation';
 
 class AcceptedHelp extends React.Component {
 
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +17,7 @@ class AcceptedHelp extends React.Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     // console.log(this.state.id)
     axios.get(`http://localhost:3000/accepted_help/${this.state.id}`)
     .then ( resp => {
@@ -31,6 +34,10 @@ class AcceptedHelp extends React.Component {
     .then( response => {
       console.log(response)
     })
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {
