@@ -47,6 +47,7 @@ class Help extends React.Component {
 
     this.state = {
       help: [],
+      acceptedCount: '',
     };
 
   }
@@ -63,6 +64,7 @@ class Help extends React.Component {
       // console.log(response)
       this.setState({
         help: response.data,
+        acceptedCount: response.data.accepted_helps.length,
       })
     }) 
   }
@@ -80,7 +82,7 @@ class Help extends React.Component {
         </div>
 
         <div>
-          <p>Your request for help has been accepted :'' times</p>
+          <h4>Your request for help has been accepted: {this.state.acceptedCount} time(s)</h4>
           <AcceptedHelps 
             acceptedHelps = {this.state.help.accepted_helps} 
           />
