@@ -60,8 +60,9 @@ class Helps extends React.Component {
 
   }
 
+  // Helps for user's dashboard
   componentDidMount = () => {
-    axios.get(`http://localhost:3000/activeHelps.json`)
+    axios.get(`http://localhost:3000/activeHelps`)
     .then( response => {
       // console.log(response.data)
       this.setState({
@@ -72,7 +73,7 @@ class Helps extends React.Component {
 
   displayHelp = (helps) => {
     // console.log(helps)
-    return helps.data && helps.data.map(help => {
+    return helps && helps.map(help => {
       // console.log(help)
       return (
         <div key ={help.id}>
@@ -80,10 +81,10 @@ class Helps extends React.Component {
             User of Help: {help.attributes.user.id}
           </h1> */}
           <h4>
-            Title: {help.attributes.title}
+            Title: {help.title}
           </h4>  
           <Link to = {`/myhelp/${help.id}`}>
-            View and chat
+            More info
           </Link>    
         </div>
       )

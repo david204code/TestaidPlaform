@@ -58,27 +58,75 @@ class HelpsController < ApplicationController
     render json: HelpSerializer.new(@helps, option).serialized_json
   end
 
+  # For the map, condition if Help has 5 accepted_helps and
+  def publish
+    now = Time.now
+    # help_id = Help.ids
+    # for each help_id usig that ID to query to AcceptedHelp tables
+    # @helps = AcceptedHelp.where(help_id: 4)
+    # @helps = Help.left_outer_joins(:accepted_helps).distinct.select('helps. *, COUNT(accepted_helps.*) AS accepted_helps_count').group('help.id')
+    @helps = Help.joins(:accepted_helps) && Help.where(status: 'unfulfilled') && Help.where(updated_at: (now - 24.hours)..now)
+    # @accepted_helps = AcceptedHelp.where(help_id: params[:id]).count >= 1
+    # @helps = Help.where(status: 'unfulfilled') && Help.where(updated_at: (now - 24.hours)..now)
+    # @helps = Help.where(status: 'unfulfilled') && @accepted_helps
+    render json: @helps, :include => {:accepted_helps => {}}
+    # render json: @accepted_helps, :include => {:help => {}}
+    # render json: help_id, :include => {:accepted_helps => {}}
+    # render json: @helps
+  end
+
+  # presently not being use
   def myHelp
     # @helps = Help.find_by user_id: current_user
     @helps = Help.where(user_id: current_user)
     render json: HelpSerializer.new(@helps, option).serialized_json
   end
 
+  # current dashboard display
+  def activeHelp
+    @helps = Help.where(user_id: current_user, status: 'unfulfilled')
+    # render json: HelpSerializer.new(@helps, option).serialized_json
+    render json: @helps, :include => {
+      :user => {
+        
+      },
+      :accepted_helps => {
+        :include => {
+          :user => {
+            
+          }
+        }
+      },
+      :conversations => {
+
+      },
+      :messages => {
+
+      },
+    }
+  end
+
   def helpChat
     # @helps = Help.find_by user_id: current_user
     @helps = Help.where(user_id: current_user) && Help.find(params[:id])
-    render json: @helps.to_json( :methods => [:accepted_helps, :conversations, :messages])
+    # render json: @helps.to_json( :methods => [:accepted_helps, :conversations, :messages])
+    render json: @helps, :include => {
+      :user => {
+      },
+      :accepted_helps => {
+        :only => [:id, :user_id],
+        :include => {
+          :user => {
+            :only => [:id, :email,]
+          }
+        }
+      },
+      :conversations => {
+      },
+      :messages => {
+      },
+    }
     # render json: HelpSerializer.new(@helps, option).serialized_json
-  end
-  
-  def unfulfilledHelps
-    @helps = Help.where(status: 'unfulfilled')
-    render json: @helps
-  end
-  
-  def activeHelp
-    @helps = Help.where(user_id: current_user, status: 'unfulfilled')
-    render json: HelpSerializer.new(@helps, option).serialized_json
   end
   
   def counter
@@ -95,12 +143,6 @@ class HelpsController < ApplicationController
   def show1
     help = Help.find_by(id: params[:id])
     render json: HelpSerializer.new(help).serialized_json
-  end
-  
-  def helpUser
-    @help ||= Help.find(params[:id])
-    # might need to render the username
-    render json: @help.user
   end
 
   private

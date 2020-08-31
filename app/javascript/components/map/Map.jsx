@@ -42,7 +42,7 @@ class Map extends React.Component {
 
   componentWillMount() {
     this._isMounted = true;
-    axios.get(`/unfulfilledHelps.json`)
+    axios.get(`/publish.json`)
     .then(data => {
       let info = []
       data.data.map( (data) => {

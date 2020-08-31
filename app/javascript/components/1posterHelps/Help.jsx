@@ -78,7 +78,7 @@ class Help extends React.Component {
            <p>Title: {this.state.help.title}</p>
            <p>Description: {this.state.help.description}</p>
            <p>Request type: {this.state.help.request_type}</p>
-           <div>User: {this.state.help.user_id}</div> 
+           {/* <div>User: {this.state.help.user_id}</div>  */}
         </div>
 
         <div>

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get '/help/:id', to: 'helps#show1'
   get '/myHelp', to: 'helps#myHelp'
   get '/helpChat/:id', to: 'helps#helpChat'
-  get '/unfulfilledHelps', to: 'helps#unfulfilledHelps'
+  get '/publish', to: 'helps#publish'
   get '/activeHelps', to: 'helps#activeHelp'
   get '/counter', to: 'helps#counter'
   resources :accepted_helps
@@ -25,8 +25,6 @@ Rails.application.routes.draw do
   get 'accepted_help/:id', to: 'accepted_helps#show1'
   get 'latest/accepted_help', to: 'accepted_helps#getLast'
   get '/myAccepted', to: 'accepted_helps#getAcceptedHelp'
-  
-  get '/helps/:id/user', to: 'helps#helpUser'
 
   resources :messages
   resources :conversations
