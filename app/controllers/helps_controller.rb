@@ -63,9 +63,10 @@ class HelpsController < ApplicationController
     now = Time.now
     # help_id = Help.ids
     # for each help_id usig that ID to query to AcceptedHelp tables
-    # @helps = AcceptedHelp.where(help_id: 4)
+    # @helps = AcceptedHelp.where(help_id: 1)
     # @helps = Help.left_outer_joins(:accepted_helps).distinct.select('helps. *, COUNT(accepted_helps.*) AS accepted_helps_count').group('help.id')
-    @helps = Help.joins(:accepted_helps) && Help.where(status: 'unfulfilled') && Help.where(updated_at: (now - 24.hours)..now)
+    @helps = Help.joins(:accepted_helps) && Help.where(status: 'unfulfilled') && Help.where(updated_at: (now - 24.hours)..now) 
+    # @helps = Help.joins(:accepted_helps).count 
     # @accepted_helps = AcceptedHelp.where(help_id: params[:id]).count >= 1
     # @helps = Help.where(status: 'unfulfilled') && Help.where(updated_at: (now - 24.hours)..now)
     # @helps = Help.where(status: 'unfulfilled') && @accepted_helps

@@ -17,6 +17,7 @@ import AcceptedHelps from './2AccepterHelps/AcceptedHelps';
 import AcceptedHelp from './2AccepterHelps/AcceptedHelp';
 import Conversation from './Conversation';
 import Counter from './Counter';
+import './App.css';
 
 class App extends React.Component {
 
@@ -120,7 +121,7 @@ class App extends React.Component {
     )
 
     return (
-      <div>
+      <div className ="App">
         <BrowserRouter>
 
           <Route
@@ -132,7 +133,7 @@ class App extends React.Component {
               />
             )}
           />
-          <Counter />
+          {/* <Counter /> */}
           <Switch>
           <Route exact path ="/" component ={Welcome} />
             {/* <Route exact path ="/" component ={Helps} /> */}

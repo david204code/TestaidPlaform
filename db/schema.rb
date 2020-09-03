@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_07_07_221707) do
   enable_extension "plpgsql"
 
   create_table "accepted_helps", force: :cascade do |t|
-    t.boolean "completed", default: false
+    t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "help_id"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_07_07_221707) do
     t.string "request_type"
     t.string "location_long"
     t.string "location_lat"
-    t.string "status", default: "unfulfilled"
+    t.string "status", default: "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"

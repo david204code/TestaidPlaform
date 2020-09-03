@@ -5,7 +5,22 @@ const Welcome = () => {
 
   return (
     <Fragment>
-      <div className ="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
+      <h1 className ="text-center">Aid Platform</h1>
+      <h4 className ="text-center">Help those around you, your very own local
+        neighbour aid platform for your own neighbour!
+      </h4>
+
+      <div className ="welcomeText offset-md-1">
+        <p className ="pt-4">
+          We are connecting people and buidling a community in a time of need and 
+          also in the time of goodness. Whether you want to provide generous help or 
+          recieve help in time of difficulties....
+        </p>
+      </div>
+
+
+
+      {/* <div className ="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
         <div className ="jumbotron jumbotron-fluid bg-transparent">
           <div className ="container secondary-color text-center">
             <h1 className ="display-4">Aid Platform</h1>
@@ -22,7 +37,7 @@ const Welcome = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
     </Fragment>
   )
 }
