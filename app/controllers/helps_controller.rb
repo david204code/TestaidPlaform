@@ -65,11 +65,11 @@ class HelpsController < ApplicationController
     # for each help_id usig that ID to query to AcceptedHelp tables
     # @helps = AcceptedHelp.where(help_id: 1)
     # @helps = Help.left_outer_joins(:accepted_helps).distinct.select('helps. *, COUNT(accepted_helps.*) AS accepted_helps_count').group('help.id')
-    @helps = Help.joins(:accepted_helps) && Help.where(status: 'unfulfilled') && Help.where(updated_at: (now - 24.hours)..now) 
+    @helps = Help.joins(:accepted_helps) && Help.where(status: 'active') && Help.where(updated_at: (now - 24.hours)..now) 
     # @helps = Help.joins(:accepted_helps).count 
     # @accepted_helps = AcceptedHelp.where(help_id: params[:id]).count >= 1
-    # @helps = Help.where(status: 'unfulfilled') && Help.where(updated_at: (now - 24.hours)..now)
-    # @helps = Help.where(status: 'unfulfilled') && @accepted_helps
+    # @helps = Help.where(status: 'active') && Help.where(updated_at: (now - 24.hours)..now)
+    # @helps = Help.where(status: 'active') && @accepted_helps
     render json: @helps, :include => {:accepted_helps => {}}
     # render json: @accepted_helps, :include => {:help => {}}
     # render json: help_id, :include => {:accepted_helps => {}}
@@ -85,7 +85,7 @@ class HelpsController < ApplicationController
 
   # current dashboard display
   def activeHelp
-    @helps = Help.where(user_id: current_user, status: 'unfulfilled')
+    @helps = Help.where(user_id: current_user, status: 'active')
     # render json: HelpSerializer.new(@helps, option).serialized_json
     render json: @helps, :include => {
       :user => {
@@ -131,7 +131,7 @@ class HelpsController < ApplicationController
   end
   
   def counter
-    @helps = Help.where(status: 'unfulfilled').count
+    @helps = Help.where(status: 'active').count
     render json: @helps
   end
   

@@ -61,7 +61,7 @@ class Counter extends React.Component {
     return(
       <Fragment>
         <div>
-          <h2 className ="text-center">Number of unfufilled request: {this.state.count}</h2>
+          <h2 className ="text-center">Number of active request: {this.state.count}</h2>
         </div>
       </Fragment>
     )
