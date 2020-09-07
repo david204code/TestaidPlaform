@@ -80,6 +80,16 @@ class Request extends React.Component {
               }).catch(error => {
                 console.log("not created", error);
               });
+              axios.get(`http://localhost:3000/acceptedHelpCounter/${this.state.help.id}`) 
+              .then(response => {
+                // console.log(this.state.help.id)
+                if (response.data >= 5) {
+                  // console.log(response.data)
+                  axios.patch(`http://localhost:3000/updateStatus/${this.state.help.id}`, 
+                  // console.log(this.state.help.id),
+                  )
+                }
+              })
               this.props.history.push(`/acceptedhelp/${acceptedId}`);
             })
           })

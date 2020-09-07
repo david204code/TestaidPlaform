@@ -65,7 +65,10 @@ class HelpsController < ApplicationController
     # for each help_id usig that ID to query to AcceptedHelp tables
     # @helps = AcceptedHelp.where(help_id: 1)
     # @helps = Help.left_outer_joins(:accepted_helps).distinct.select('helps. *, COUNT(accepted_helps.*) AS accepted_helps_count').group('help.id')
-    @helps = Help.joins(:accepted_helps) && Help.where(status: 'active') && Help.where(updated_at: (now - 24.hours)..now) 
+    # @helps = Help.joins(:accepted_helps) && Help.where(status: 'active') && Help.where(updated_at: (now - 24.hours)..now) 
+    # NOT WORKING on JSON!
+    # @helps = Help.where(status: 'active') && Help.where(updated_at: (now - 24.hours)..now) 
+    @helps = Help.where(status: 'active') || Help.where(updated_at: (now - 24.hours)..now)
     # @helps = Help.joins(:accepted_helps).count 
     # @accepted_helps = AcceptedHelp.where(help_id: params[:id]).count >= 1
     # @helps = Help.where(status: 'active') && Help.where(updated_at: (now - 24.hours)..now)
@@ -85,7 +88,7 @@ class HelpsController < ApplicationController
 
   # current dashboard display
   def activeHelp
-    @helps = Help.where(user_id: current_user, status: 'active')
+    @helps = Help.where(user_id: current_user, status: 'active', status: 'In progress')
     # render json: HelpSerializer.new(@helps, option).serialized_json
     render json: @helps, :include => {
       :user => {
@@ -144,6 +147,14 @@ class HelpsController < ApplicationController
   def show1
     help = Help.find_by(id: params[:id])
     render json: HelpSerializer.new(help).serialized_json
+  end
+
+  def updateStatus
+    @help = Help.find_by(id: params[:id])
+    @help.status = 'In progress'
+    @help.save
+    # @help = Help.find_by(id: params[:id]) && Help.update(help_params)
+    # Help.update(help_params)
   end
 
   private

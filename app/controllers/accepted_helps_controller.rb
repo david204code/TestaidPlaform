@@ -15,15 +15,15 @@ class AcceptedHelpsController < ApplicationController
       render json: @accepted_help.errors, status: :unprocessable_entity
     end
 
-    respond_to do |format|
-      if @accepted_help.save
-        # format.html { redirect_to @accepted_help, notice: 'Accpeted was successfully created.' }
-        format.json { render json: @accepted_help }
-      else
-        format.html { render :new }
-        format.json { render json: @accepted_help.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @accepted_help.save
+    #     # format.html { redirect_to @accepted_help, notice: 'Accpeted was successfully created.' }
+    #     format.json { render json: @accepted_help }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @accepted_help.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   def index
@@ -67,6 +67,12 @@ class AcceptedHelpsController < ApplicationController
   def getLast
     @accepted_help = AcceptedHelp.last
     # @accepted_help ||= @help.accepted_helps.last
+    render json: @accepted_help
+  end
+
+  def acceptedHelpCounter
+    @accepted_help = AcceptedHelp.where(help_id: params[:id]).length
+
     render json: @accepted_help
   end
 
