@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get '/activeHelps', to: 'helps#activeHelp'
   get '/counter', to: 'helps#counter'
   patch '/updateStatus/:id', to: 'helps#updateStatus'
+  patch '/completeHelp/:id', to: 'helps#completeHelp'
+  patch '/archiveHelp/:id', to: 'helps#archiveHelp'
   resources :accepted_helps
   get 'accepted_helps1', to: 'accepted_helps#index1'
   get 'accepted_help/:id', to: 'accepted_helps#show1'

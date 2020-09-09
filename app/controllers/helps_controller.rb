@@ -88,7 +88,8 @@ class HelpsController < ApplicationController
 
   # current dashboard display
   def activeHelp
-    @helps = Help.where(user_id: current_user, status: 'active', status: 'In progress')
+    @helps = Help.where(user_id: current_user, status: ['active', 'ongoing'])
+    # @helps = Help.where(user_id: current_user, status: 'active')
     # render json: HelpSerializer.new(@helps, option).serialized_json
     render json: @helps, :include => {
       :user => {
@@ -155,6 +156,18 @@ class HelpsController < ApplicationController
     @help.save
     # @help = Help.find_by(id: params[:id]) && Help.update(help_params)
     # Help.update(help_params)
+  end
+
+  def completeHelp
+    @help = Help.find_by(id: params[:id])
+    @help.status = 'Completed'
+    @help.save
+  end
+
+  def archiveHelp
+    @help = Help.find_by(id: params[:id])
+    @help.status = 'Incomplete'
+    @help.save
   end
 
   private

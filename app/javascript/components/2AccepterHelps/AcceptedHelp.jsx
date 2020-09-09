@@ -21,9 +21,8 @@ class AcceptedHelp extends React.Component {
     // console.log(this.state.id)
     axios.get(`http://localhost:3000/accepted_help/${this.state.id}`)
     .then ( resp => {
-      // console.log(resp.data.data)
-      // console.log(resp.data.data.attributes.help)
-      this.setState({acceptedHelp: resp.data.data, loaded: true})
+      // console.log(resp.data)
+      this.setState({acceptedHelp: resp.data, loaded: true})
       // console.log(this.state.acceptedHelp)
     })
     .catch ( resp => console.log(resp) )
@@ -47,13 +46,23 @@ class AcceptedHelp extends React.Component {
         {
           loaded &&
           <Fragment>
-            <div key ={this.state.acceptedHelp.attributes.id}>
+            <div key ={this.state.acceptedHelp.id}>
               <h1>AcceptedHelp</h1>
               {/* {console.log(this.state.acceptedHelp)} */}
-              <h4>HelpID: {this.state.acceptedHelp.attributes.help_id}</h4>
-              <h1>Title: {this.state.acceptedHelp.attributes.help.title}</h1>
-              <h3>Type of Request: {this.state.acceptedHelp.attributes.help.request_type}</h3>
-              <p>Description: {this.state.acceptedHelp.attributes.help.description}</p>
+              {/* {console.log(localStorage.userEmail)} */}
+              {/* console.log(this.state.acceptedHelp.help.user.email) */}
+              {
+                this.state.acceptedHelp.help.user.email === localStorage.userEmail ?
+                <div>
+                  <button>Mark the request as complete</button>
+                  <button>Archive the request as incomplete</button>
+                </div>:
+                null
+              }
+              <h4>HelpID: {this.state.acceptedHelp.help_id}</h4>
+              <h1>Title: {this.state.acceptedHelp.help.title}</h1>
+              <h3>Type of Request: {this.state.acceptedHelp.help.request_type}</h3>
+              <p>Description: {this.state.acceptedHelp.help.description}</p>
             </div>
             {/* // need to pass in the props of the acceptedHelp ID */}
             <Conversation 

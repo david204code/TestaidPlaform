@@ -56,19 +56,19 @@ class Request extends React.Component {
             // this.props.history.push(`/acceptedhelp/${acceptedId}`);
             axios.get(`http://localhost:3000/accepted_help/${acceptedId}`)
               .then (response => {
-              // console.log(response.data.data)
-              // console.log(response.data.data.attributes.help)
+              // console.log(response.data)
+              // console.log(response.data.help)
               this.setState({
-                acceptedHelp: response.data.data
+                acceptedHelp: response.data
               })
               acceptedHelp = this.state.acceptedHelp;
-              // console.log(acceptedHelp.attributes)
+              // console.log(acceptedHelp)
               // console.log(acceptedHelp.id)
-              // console.log(acceptedHelp.attributes.help.title)
+              // console.log(acceptedHelp.help.title)
               axios.post(`http://localhost:3000/conversations`, 
               {
                 conversation: {
-                title: acceptedHelp.attributes.help.title,
+                title: acceptedHelp.help.title,
                 accepted_help_id: acceptedHelp.id,
                 }
               },
@@ -82,7 +82,7 @@ class Request extends React.Component {
               });
               axios.get(`http://localhost:3000/acceptedHelpCounter/${this.state.help.id}`) 
               .then(response => {
-                // console.log(this.state.help.id)
+                // console.log(response)
                 if (response.data >= 5) {
                   // console.log(response.data)
                   axios.patch(`http://localhost:3000/updateStatus/${this.state.help.id}`, 

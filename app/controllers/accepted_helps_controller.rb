@@ -45,7 +45,20 @@ class AcceptedHelpsController < ApplicationController
 
   def show1
     @accepted_helps = AcceptedHelp.find_by(id: params[:id])
-    render json: AccepetedHelpSerializer.new(@accepted_helps).serialized_json
+    render json: @accepted_helps, :include => {
+      :help => {
+        :include => {
+          :user => {
+                        
+          }
+        }
+      },
+      :user => {
+
+      },
+    }
+    
+    # render json: AccepetedHelpSerializer.new(@accepted_helps).serialized_json
   end
 
   def getAcceptedHelp

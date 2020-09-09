@@ -25,7 +25,7 @@ class Conversation extends React.Component {
     super(props);
 
     this.state = {
-      conversationTitle: [this.props.acceptedHelp.attributes.help.title],
+      conversationTitle: [this.props.acceptedHelp.help.title],
       acceptedHelpID: [this.props.acceptedHelp.id],
       conversation: [],
       currentConversation: {
