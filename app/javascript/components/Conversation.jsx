@@ -70,7 +70,8 @@ class Conversation extends React.Component {
   //   });
   // }
   componentDidMount = () => {
-    axios.get(`http://localhost:3000/conversation/${this.props.acceptedHelp.id}`)
+    // console.log(this.props.acceptedHelp.conversation.id)
+    axios.get(`http://localhost:3000/conversation/${this.props.acceptedHelp.conversation.id}`)
     .then( response => {
       // console.log(response.data)
       this.setState({currentConversation: {

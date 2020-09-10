@@ -56,6 +56,9 @@ class AcceptedHelpsController < ApplicationController
       :user => {
 
       },
+      :conversation => {
+        
+      }
     }
     
     # render json: AccepetedHelpSerializer.new(@accepted_helps).serialized_json
