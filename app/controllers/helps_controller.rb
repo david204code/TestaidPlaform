@@ -152,7 +152,7 @@ class HelpsController < ApplicationController
 
   def updateStatus
     @help = Help.find_by(id: params[:id])
-    @help.status = 'In progress'
+    @help.status = 'in progress'
     @help.save
     # @help = Help.find_by(id: params[:id]) && Help.update(help_params)
     # Help.update(help_params)
@@ -160,13 +160,13 @@ class HelpsController < ApplicationController
 
   def completeHelp
     @help = Help.find_by(id: params[:id])
-    @help.status = 'Completed'
+    @help.status = 'completed'
     @help.save
   end
 
   def archiveHelp
     @help = Help.find_by(id: params[:id])
-    @help.status = 'Incomplete'
+    @help.status = 'incomplete'
     @help.save
   end
 

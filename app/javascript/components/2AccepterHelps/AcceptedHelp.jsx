@@ -39,6 +39,28 @@ class AcceptedHelp extends React.Component {
     this._isMounted = false;
   }
 
+  completeRequest = (event) => {
+    event.preventDefault()
+    const { acceptedHelp } = this.state;
+    // console.log(acceptedHelp)
+
+    axios.patch(`http://localhost:3000/completeHelp/${this.state.acceptedHelp.help.id}`,
+      // console.log(this.state.acceptedHelp.help)
+    )
+    this.props.history.push(`/dashboard`);
+  };
+
+  archiveRequest = (event) => {
+    event.preventDefault()
+    const { acceptedHelp } = this.state;
+    // console.log(acceptedHelp)
+
+    axios.patch(`http://localhost:3000/archiveHelp/${this.state.acceptedHelp.help.id}`,
+      // console.log(this.state.acceptedHelp.help)
+    )
+    this.props.history.push(`/dashboard`);
+  };
+
   render() {
     let loaded = this.state.loaded;
     return (
@@ -54,8 +76,12 @@ class AcceptedHelp extends React.Component {
               {
                 this.state.acceptedHelp.help.user.email === localStorage.userEmail ?
                 <div>
-                  <button>Mark the request as complete</button>
-                  <button>Archive the request as incomplete</button>
+                  <form onSubmit ={this.completeRequest}>
+                    <button type ="submit">Mark the request as complete</button>
+                  </form>
+                  <form onSubmit ={this.archiveRequest}>
+                    <button type ="submit">Archive the request as incomplete</button>
+                  </form>
                 </div>:
                 null
               }
