@@ -64,9 +64,17 @@ class AcceptedHelpsController < ApplicationController
     # render json: AccepetedHelpSerializer.new(@accepted_helps).serialized_json
   end
 
-  def getAcceptedHelp
+  def activeAcceptedHelps
     @accepted_helps = AcceptedHelp.where(user_id: current_user)
-    render json: AccepetedHelpSerializer.new(@accepted_helps).serialized_json
+    render json: @accepted_helps, :include => {
+      :user => {
+
+      },
+      :help => {
+
+      },
+    }
+    # render json: AccepetedHelpSerializer.new(@accepted_helps).serialized_json
   end
 
   # def getId
