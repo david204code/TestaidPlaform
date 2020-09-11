@@ -47,6 +47,7 @@ class AcceptedHelp extends React.Component {
     axios.patch(`http://localhost:3000/completeHelp/${this.state.acceptedHelp.help.id}`,
       // console.log(this.state.acceptedHelp.help)
     )
+    axios.patch(`http://localhost:3000/updateActive/${this.state.acceptedHelp.id}`),
     this.props.history.push(`/dashboard`);
   };
 
@@ -58,6 +59,7 @@ class AcceptedHelp extends React.Component {
     axios.patch(`http://localhost:3000/archiveHelp/${this.state.acceptedHelp.help.id}`,
       // console.log(this.state.acceptedHelp.help)
     )
+    axios.patch(`http://localhost:3000/updateActive/${this.state.acceptedHelp.id}`),
     this.props.history.push(`/dashboard`);
   };
 

@@ -77,16 +77,13 @@ class AcceptedHelpsController < ApplicationController
     # render json: AccepetedHelpSerializer.new(@accepted_helps).serialized_json
   end
 
-  # def getId
-  #   @accepted_help ||= @help.accepted_helps.find(params[:id])
-  #   render json: @accepted_help
-  # end
-
-  # def getUser
-  #   @accepted_help ||= @help.accepted_helps.find(params[:id])
-  #   # render json: @accepted_help.help.user
-  #   render json: @accepted_help.user
-  # end
+  # Change active to false
+  def updateActive
+    @accepted_help = AcceptedHelp.find_by(id: params[:id])
+    # render json: @accepted_help
+    @accepted_help.active = false
+    @accepted_help.save
+  end
 
   def getLast
     @accepted_help = AcceptedHelp.last

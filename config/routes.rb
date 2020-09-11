@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get 'latest/accepted_help', to: 'accepted_helps#getLast'
   get '/activeAcceptedHelps', to: 'accepted_helps#activeAcceptedHelps'
   get '/acceptedHelpCounter/:id', to: 'accepted_helps#acceptedHelpCounter'
+  patch '/updateActive/:id', to: 'accepted_helps#updateActive'
 
   resources :messages
   resources :conversations
