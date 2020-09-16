@@ -69,7 +69,8 @@ class Conversation extends React.Component {
   //     console.log("not created", error);
   //   });
   // }
-  componentDidMount = () => {
+  componentDidMount () {
+    // componentDidUpdate () {
     // console.log(this.props.acceptedHelp.conversation.id)
     axios.get(`http://localhost:3000/conversation/${this.props.acceptedHelp.conversation.id}`)
     .then( response => {
