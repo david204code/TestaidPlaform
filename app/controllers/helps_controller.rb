@@ -79,13 +79,6 @@ class HelpsController < ApplicationController
     # render json: @helps
   end
 
-  # presently not being use
-  def myHelp
-    # @helps = Help.find_by user_id: current_user
-    @helps = Help.where(user_id: current_user)
-    render json: HelpSerializer.new(@helps, option).serialized_json
-  end
-
   # current dashboard display
   def activeHelp
     @helps = Help.where(user_id: current_user, status: ['active', 'ongoing'])
@@ -144,7 +137,7 @@ class HelpsController < ApplicationController
     # render json: { data: @help }
     render json: @help, :include => {
       :user => {
-        
+
       }
     }
   end

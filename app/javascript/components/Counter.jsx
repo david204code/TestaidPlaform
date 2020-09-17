@@ -51,7 +51,7 @@ class Counter extends React.Component {
     .then( response => {
       // console.log(response.data)
       this.setState({count: response.data})
-      this.intervalID = setTimeout(this.getCount.bind(this), 10000);
+      // this.intervalID = setTimeout(this.getCount.bind(this), 10000);
       // console.log('hi')
     })
     .catch(response => console.log(response))
