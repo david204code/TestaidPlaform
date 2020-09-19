@@ -67,8 +67,8 @@ class HelpsController < ApplicationController
     # @helps = Help.left_outer_joins(:accepted_helps).distinct.select('helps. *, COUNT(accepted_helps.*) AS accepted_helps_count').group('help.id')
     # @helps = Help.joins(:accepted_helps) && Help.where(status: 'active') && Help.where(updated_at: (now - 24.hours)..now) 
     # NOT WORKING on JSON!
-    # @helps = Help.where(status: 'active') && Help.where(updated_at: (now - 24.hours)..now) 
-    @helps = Help.where(status: 'active') || Help.where(updated_at: (now - 24.hours)..now)
+    @helps = Help.where(status: 'active') & Help.where(created_at: (now - 24.hours)..now) 
+    # @helps = Help.where(status: 'active') | Help.where(created_at: (now - 24.hours)..now)
     # @helps = Help.joins(:accepted_helps).count 
     # @accepted_helps = AcceptedHelp.where(help_id: params[:id]).count >= 1
     # @helps = Help.where(status: 'active') && Help.where(updated_at: (now - 24.hours)..now)
@@ -138,8 +138,28 @@ class HelpsController < ApplicationController
     render json: @help, :include => {
       :user => {
 
-      }
+      },
+      :accepted_helps => {
+        :include => {
+          :user => {
+
+          },
+        },
+      },
     }
+  end
+
+  # For same user cannot accepted same help twice
+  def checkUser
+    # @help = Help.find_by(id: params[:id])
+    # @help = AcceptedHelp.where(help_id: params[:id])
+    # @help.each do |p|
+    #   p.user = AcceptedHelp.find_by('help_id')
+    # end
+    @help = AcceptedHelp.where(user_id: params[:id])
+    render json: @help, :only => [
+      :user_id
+    ]
   end
 
   def show1

@@ -35,6 +35,7 @@ class AcceptedHelps extends React.Component {
           <h1>
             Accepted User ID: {acceptedHelp.user_id}, AcceptedHelp ID: {acceptedHelp.id}
           </h1>
+          <p>Accepted by: {acceptedHelp.user.email}</p>
           <Link to = {`/acceptedhelp/${acceptedHelp.id}`}>
             View and chat
           </Link>  

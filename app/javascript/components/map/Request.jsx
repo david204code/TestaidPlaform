@@ -11,6 +11,8 @@ class Request extends React.Component {
       help: [],
       accepted: [],
       acceptedId: '',
+      checkUser: '',
+      userId: parseInt(localStorage.userId, 10),
       loaded: false,
     };
 
@@ -30,9 +32,27 @@ class Request extends React.Component {
       // console.log(response)
       this.setState({help: response.data, loaded: true})
       // console.log(this.state.help.id)
+
+      axios.get(`http://localhost:3000/checkUser/${this.state.userId}`)
+      .then(response => {
+        // console.log(response.data[0].user_id)
+        this.setState({checkUser: response.data[0].user_id})
+      })
     })
     .catch(error => console.log(error))
   }
+
+  // checkingUser = (checkUser) => {
+  //   console.log(checkUser)
+  //   return checkUser && checkUser.map(user => {
+  //     return (
+  //       <div key ={user.id}>
+  //         <p key ={user.id}>id: {user.id}</p>
+  //       </div>
+  //     )
+  //   })    
+  // }
+
 
   acceptRequest = (event) => {
     event.preventDefault()
@@ -111,6 +131,7 @@ class Request extends React.Component {
         { 
           loaded &&
           <Fragment>
+            {/* {this.checkingUser(this.state.checkUser)} */}
             <section className ="jumbotron jumbotron-fluid text-center">
               <div className ="container py-1">
                 <h1 className ="display-4">
@@ -151,7 +172,7 @@ class Request extends React.Component {
     
             {/* {console.log(this.state.help.user.email)} */}
             {
-              this.state.help.user.email != localStorage.userEmail ?
+              this.state.help.user.email != localStorage.userEmail & this.state.checkUser != this.state.userId  ?
               <div className ="container pb-5 text-center">
                 <p className ="text-center pt-3">
                   Able to assist? Click on the button below!
@@ -173,6 +194,15 @@ class Request extends React.Component {
               <div className ="container pb-5 text-center">
                 <p className ="text-center pt-3">
                   Congratulations on making this request, 
+                </p>
+              </div>:
+              null
+            }
+            {
+              this.state.checkUser === this.state.userId ?
+              <div className ="container pb-5 text-center">
+                <p className ="text-center pt-3">
+                  You have already accepted this request before, good luck!
                 </p>
               </div>:
               null

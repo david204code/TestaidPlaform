@@ -27,6 +27,7 @@ class App extends React.Component {
     this.state = {
       isLoggedin: false,
       userEmail: localStorage.userEmail,
+      userId: localStorage.userId,
       user: {}
     };
 
@@ -62,13 +63,15 @@ class App extends React.Component {
         this.setState({
           isLoggedin: true,
           user: response.data.user,
-          userEmail: response.data.user.email
+          userEmail: response.data.user.email,
+          userId: response.data.user.id,
         })
       } else if (!response.data.logged_in) {
         this.handleLogOut()
         this.setState({
           isLoggedin: false,
           userEmail: '',
+          userId: '',
           user: {}
         })
       }
@@ -82,6 +85,7 @@ class App extends React.Component {
   componentWillUpdate(nextProps, nextState) {
     localStorage.setItem('user', JSON.stringify(nextState.user));
     localStorage.setItem('userEmail', nextState.userEmail);
+    localStorage.setItem('userId', nextState.userId);
   }
 
 
@@ -91,6 +95,7 @@ class App extends React.Component {
       isLoggedin: true,
       user: data.data.user,
       userEmail: data.data.user.email,
+      userId: data.data.user.id,
     });
   };
 

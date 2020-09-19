@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/publish', to: 'helps#publish'
   get '/activeHelps', to: 'helps#activeHelp'
   get '/counter', to: 'helps#counter'
+  get '/checkUser/:id', to: 'helps#checkUser'
   patch '/updateStatus/:id', to: 'helps#updateStatus'
   patch '/completeHelp/:id', to: 'helps#completeHelp'
   patch '/archiveHelp/:id', to: 'helps#archiveHelp'
