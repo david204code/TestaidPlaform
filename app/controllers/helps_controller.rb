@@ -156,10 +156,12 @@ class HelpsController < ApplicationController
     # @help.each do |p|
     #   p.user = AcceptedHelp.find_by('help_id')
     # end
-    @help = AcceptedHelp.where(user_id: params[:id])
-    render json: @help, :only => [
-      :user_id
-    ]
+    @help = AcceptedHelp.where(help_id: params[:helpId]).where(user_id: params[:id])
+    render json: @help, :include => {
+      :user => {
+
+      },
+    }
   end
 
   def show1

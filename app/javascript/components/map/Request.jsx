@@ -33,7 +33,7 @@ class Request extends React.Component {
       this.setState({help: response.data, loaded: true})
       // console.log(this.state.help.id)
 
-      axios.get(`http://localhost:3000/checkUser/${this.state.userId}`)
+      axios.get(`http://localhost:3000/checkUser/${id}/${this.state.userId}`)
       .then(response => {
         // console.log(response.data[0].user_id)
         this.setState({checkUser: response.data[0].user_id})
