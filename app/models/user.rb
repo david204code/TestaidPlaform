@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :helps, dependent: :destroy
   has_many :accepted_helps, dependent: :destroy
+
+  has_one_attached :governmentId
 end
