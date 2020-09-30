@@ -1,7 +1,12 @@
-.App {
+body {
+  background-color: grey;
+}
+
+/* .App {
   background-color: grey;
   overflow-x: hidden;
-}
+} */
+
 
 .welcomeText {
   height: 100vh;

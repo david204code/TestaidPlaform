@@ -9,8 +9,8 @@ const Welcome = () => {
       <h4 className ="text-center">Help those around you, your very own local
         neighbour aid platform for your own neighbour!
       </h4>
-
-      <div className ="welcomeText offset-md-1">
+      
+      <div className ="container text-center">
         <p className ="pt-4">
           We are connecting people and buidling a community in a time of need and 
           also in the time of goodness. Whether you want to provide generous help or 
