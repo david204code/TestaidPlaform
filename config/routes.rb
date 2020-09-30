@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/logged_in', to: 'sessions#is_logged_in?'
   resources :users, only: [:create, :show, :index]
 
+  post 'rails/active_storage/direct_uploads', to: 'direct_uploads#create'
+
   # resources :helps do
   #   resources :accepted_helps
   #   get '/accepted_help/last', to: 'accepted_helps#getLast'
