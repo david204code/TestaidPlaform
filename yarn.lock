@@ -1328,6 +1328,13 @@ actioncable@^5.2.4-3:
   resolved "https://registry.yarnpkg.com/actioncable/-/actioncable-5.2.4-3.tgz#cb4d1f4a6a8164ac9abe623eca2c382fe05e7d47"
   integrity sha512-SrGfg2W2GKGfYOlsOUnqjdihUhIVoyb5ewsMtpfE/Z3ZK/j5Gj2e/YWp2A7Wo+aeB1aewhPxorFxIGVRowbX4w==
 
+activestorage@^5.2.0:
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/activestorage/-/activestorage-5.2.4.tgz#758650e01cbb2ce0e3e80e4b20a7641a021a5412"
+  integrity sha512-3HDU9nCt/wn4yisSdS7wd32YPZgKRfwq2BE4kA7yuAQYKn+/X2S1sM8nAtnfPQRZIWarabIvGjbVzJNsERAb5Q==
+  dependencies:
+    spark-md5 "^3.0.0"
+
 activestorage@^5.2.4-4:
   version "5.2.4-4"
   resolved "https://registry.yarnpkg.com/activestorage/-/activestorage-5.2.4-4.tgz#175574d42cb9520a1ed078b334f3bd1b615a7411"
@@ -6573,6 +6580,14 @@ react-actioncable-provider@^2.0.0:
     create-react-class "^15.6.2"
     prop-types "^15.6.0"
     react "~16.3.0"
+
+react-activestorage-provider@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-activestorage-provider/-/react-activestorage-provider-0.8.0.tgz#4e64365dc089eb1149e975f90b223ed132b23012"
+  integrity sha512-7I0ujhezFBV6oYaP+U4WUOwn3/3l6NAv1eWOMghp0JUgPwrj0H23MkvaDAhkycVCCAQdKmJdOcraOl+bzD/Q8w==
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+    activestorage "^5.2.0"
 
 react-dom@^16.13.1:
   version "16.13.1"

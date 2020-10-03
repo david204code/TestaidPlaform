@@ -17,6 +17,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-actioncable-provider": "^2.0.0",
+    "react-activestorage-provider": "^0.8.0",
     "react-dom": "^16.13.1",
     "react-map-gl": "^5.2.5",
     "react-router-dom": "^5.1.2",

@@ -1,64 +1,99 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { DirectUpload } from 'activestorage';
 
 class SignUp extends React.Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       email: "",
       password: "",
       password_confirmation: "",
-      registrationErrors: ""
+      registrationErrors: "",
+      governmentId: {},
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
+  handleChange = (event) => {
+    if (event.target.name === 'governmentId') {
+      this.setState({
+        [event.target.name]: event.target.files[0]
+      })
+    } else {
+      this.setState({
+        [event.target.name]: event.target.value
+      })
+    }
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = (event, file) => {
     event.preventDefault()
-    const { username, email, password, password_confirmation } = this.state;
+    let { email, password, password_confirmation, governmentId } = this.state;
 
     let user = {
-      username: username,
       email: email,
       password: password,
-      password_confirmation: password_confirmation
+      password_confirmation: password_confirmation,
+      governmentId: governmentId,
     }
 
     axios.post('http://localhost:3000/users', {user}, {withCredentials: true})
       .then(response => {
+        // console.log(response);
         if (response.data.status === 'created') {
           this.props.handleSuccessfulAuth(response)
+          // console.log(response)
         } else {
           this.setState({
             errors: response.data.errors
           })
         }
       })
+      .then(data => (this.state.governmentId, data))
       .catch(error => console.log('api errors:', error)
+    )    
+  };
+
+  handleErrors = () => {
+    return (
+      <div>
+        <ul>
+          {this.state.errors.map((error) => {
+            return <li key={error}>{error}</li>
+          })}
+        </ul>
+      </div>
     )
   };
 
-    handleErrors = () => {
-      return (
-        <div>
-          <ul>
-            {this.state.errors.map((error) => {
-              return <li key={error}>{error}</li>
-            })}
-          </ul>
-        </div>
-      )
-    };
+  // uploadFile = (file, user) => {
+  //   const upload = new DirectUpload(file, 'http://localhost:3000/rails/active_storage/direct_uploads')
+  //   upload.create((error, blob) => {
+  //     if (error) {
+  //       console.log(error)
+  //     } else {
+  //       // console.log('there is no error....')
+  //       console.log(user)
+  //       fetch(`http://localhost:3000/users/${user.id}`, {
+  //         method: 'PUT',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           'Accept': 'application/json'
+  //         },
+  //         body: JSON.stringify({governmentId: blob.signed_id})
+  //       })
+  //       .then(response => response.json())
+  //       .then(console.log(response))
+  //       // .then(data => this.props.updateCurrentUser(data))
+  //     }
+  //   })
+  // }
+
 
   render() {
 
@@ -93,6 +128,9 @@ class SignUp extends React.Component {
             onChange={this.handleChange}
             required
           />
+
+          <label>Upload your government approved ID to verify your identity</label>
+          <input type ='file' name ='governmentId' onChange ={this.handleChange} />
 
           <button type="submit">Register</button>
         </form>

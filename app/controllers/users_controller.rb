@@ -15,12 +15,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    user = User.find_by(id: params[:id])
     governmentId = rails_blob_path(user.governmentId)
     
-    if @user
+    if user
       render json: {
-        user: @user, governmentId: governmentId
+        user: user, governmentId: governmentId
       }
     else
       render json: {
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   private 
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :id, :governmentId)
   end
 
 end
