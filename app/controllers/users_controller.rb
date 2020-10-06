@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    # @users = User.all
+    @users = User.all.with_attached_governmentId
     if @users
       render json: {
         users: @users
@@ -56,7 +57,7 @@ class UsersController < ApplicationController
   private 
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :id, :governmentId)
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
 end

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import Helps from '../1posterHelps/Helps';
-import AcceptedHelps from '../2AccepterHelps/AcceptedHelps' 
+import AcceptedHelps from '../2AccepterHelps/AcceptedHelps';
+import ActiveStorageProvider from 'react-activestorage-provider'; 
 
 class Dashboard extends React.Component {
 
@@ -15,6 +16,12 @@ class Dashboard extends React.Component {
     
   };
   
+  componentWillMount() {
+    axios.get(`http://localhost:3000/users/${localStorage.userId}`)
+    .then(response => {
+      console.log(response)
+    })
+  }
   // componentDidUpdate() {
   //   componentDidMount(){
   //   console.log(this.props.user.id);
