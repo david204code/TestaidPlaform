@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
   def index
-    # @users = User.all
-    @users = User.all.with_attached_governmentId
+    @users = User.all
+    # @users = User.all.with_attached_governmentId
     if @users
       render json: {
         users: @users

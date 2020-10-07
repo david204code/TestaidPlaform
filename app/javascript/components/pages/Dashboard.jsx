@@ -19,7 +19,7 @@ class Dashboard extends React.Component {
   componentWillMount() {
     axios.get(`http://localhost:3000/users/${localStorage.userId}`)
     .then(response => {
-      console.log(response)
+      console.log(response.data)
     })
   }
   // componentDidUpdate() {
@@ -32,6 +32,7 @@ class Dashboard extends React.Component {
       <div>
         {/* <h1>Dashboard</h1>
         <h1>Status: {this.props.isLoggedin.toString()}</h1> */}
+        <img src={`http://localhost:3000/users/${localStorage.userId}`} />
         <h1>User: {this.props.user.email}</h1>
         <Helps {...this.props.user}/>
         <AcceptedHelps {...this.props.user}/>

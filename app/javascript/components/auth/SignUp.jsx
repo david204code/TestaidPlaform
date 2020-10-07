@@ -134,7 +134,7 @@ class SignUp extends React.Component {
 
     return (
       <div>
-        {/* <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <input 
             type="email" 
             name="email" 
@@ -143,7 +143,6 @@ class SignUp extends React.Component {
             onChange={this.handleChange} 
             required 
           />
-
           <input 
             type="password"
             name="password"
@@ -152,7 +151,6 @@ class SignUp extends React.Component {
             onChange={this.handleChange}
             required
           />
-
           <input
             type="password"
             name="password_confirmation"
@@ -161,13 +159,11 @@ class SignUp extends React.Component {
             onChange={this.handleChange}
             required
           />
-
           <label>Upload your government approved ID to verify your identity</label>
           <input type ='file' name ='governmentId' onChange ={this.handleChange} />
-
           <button type="submit">Register</button>
-        </form> */}
-        <form onSubmit ={this.handleSubmit}>
+        </form>
+        {/* <form onSubmit ={this.handleSubmit}>
           <label>Email:</label>
           <input type ='text' name ='email' value ={this.state.email} onChange ={this.handleChange} />
           <label>Password:</label>
@@ -177,7 +173,7 @@ class SignUp extends React.Component {
           <label>Upload your governmentId:</label>
           <input type ='file' name ='governmentId' onChange ={this.handleChange} />
           <input type ='submit' value ='Create My Account' onSubmit ={this.handleSubmit}/>
-        </form>
+        </form> */}
       </div>
     );
   }
