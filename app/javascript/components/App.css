@@ -1,5 +1,11 @@
+html {
+  margin-bottom: 0px;
+}
+
 body {
-  background-color: grey;
+  /* background-color: grey; */
+  /* margin: 0px; */
+  padding: 0px;
 }
 
 /* .App {
@@ -8,8 +14,8 @@ body {
 } */
 
 
-.welcomeText {
+/* .welcomeText {
   height: 100vh;
   width: 80vw;
   text-align: center;
-}
+} */

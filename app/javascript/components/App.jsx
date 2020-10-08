@@ -17,6 +17,7 @@ import AcceptedHelps from './2AccepterHelps/AcceptedHelps';
 import AcceptedHelp from './2AccepterHelps/AcceptedHelp';
 import Conversation from './Conversation';
 import Counter from './Counter';
+import Footer from '../components/pages/Footer'
 import './App.css';
 
 class App extends React.Component {
@@ -254,6 +255,7 @@ class App extends React.Component {
 
           </Switch>
         </BrowserRouter>
+        <Footer />
       </div>
     )
   }
